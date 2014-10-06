@@ -16,3 +16,4 @@ group
 
 ## Git ##
 1. git clone git@github.com:bingblue/group.git 成功！
+2. 修改于 github.
