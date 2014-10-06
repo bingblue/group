@@ -14,3 +14,5 @@ group
 - 个人主页(/user/id)
 - 个人信息(/user/id/info)
 
+## Git ##
+1. git clone git@github.com:bingblue/group.git 成功！
