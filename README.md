@@ -17,3 +17,4 @@ group
 ## Git ##
 1. git clone git@github.com:bingblue/group.git 成功！
 2. 修改于 github.
+3. git push -u origin master 成功！
