@@ -10,6 +10,8 @@ group
 ##项目功能 (/group)##
 
 - 首页(/index)
+- 登录(/login)
+- 登出(/logout)
 - 问答模块(/question)
 - 个人主页(/user/id)
 - 个人信息(/user/id/info)
