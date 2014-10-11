@@ -7,12 +7,14 @@ group
 
 **群号** ： 206683621
 
-## 项目功能 ##
+##项目功能 (/group)##
 
 - 首页(/index)
 - 问答模块(/question)
 - 个人主页(/user/id)
 - 个人信息(/user/id/info)
+- 招聘信息(/business/offer)
+- 聊天系统(/chat)
 
 ## Git ##
 1. git clone git@github.com:bingblue/group.git 成功！
