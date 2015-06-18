@@ -15,7 +15,7 @@ router.get('/', function(req, res) {
     email: "a59769507@hotmail.com",
   })
   newUser.save(function(err,user){
-    res.send(user.regDate.time+"");
+    //res.send(user.regDate.getHours()+"");
   });
   //mongoose.connect(db);
   //console.log('11');

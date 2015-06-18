@@ -1,25 +1,46 @@
 var crypto = require('crypto');
 var mongoose = require('./db');
+var counters = require('./counters');
 
 var userSchema = new mongoose.Schema({
-  name: {
+  //必填字段
+  userName: {//用户名
     type: 'String',
     required: true,//是否必填项
     exist: true //是否存在即验证
   },
-  password: {
+  userPwd: {//密码
     type: 'String',
     required: true
+  },
+  nickName: {//昵称
+    type: 'String'
   },
   email: {
     type: 'String',
     required: true
   },
-  regDate:{
+
+  //系统生成字段
+  userId: {//用户ID 类似QQ号
+    type: Number
+  },
+  userStatus: {//用户状态 1.正常 2.在线、3离线、0封禁
+    type: Number,
+    default: 1
+  },
+  userLvl: {//用户等级
+    type: Number,
+    default: 1
+  },
+  userVip: {//VIP等级
+    type: Number,
+    default: 0
+  },
+  regDate: {//注册时间
     type: Date,
     default: Date.now
-  },
-  head: String
+  }
 }, {
   collection: 'users' 
 });
@@ -38,10 +59,11 @@ User.prototype.save = function(callback) {
   var password_MD5 = crypto.createHash('md5').update(this.password).digest('hex');
 
   var user = {
-      name: this.name,
-      password: password_MD5,
-      email: this.email,
-      head: head
+    userName: this.name,
+    userPwd: password_MD5,
+    email: this.email,
+    userId : counters.getNextSequence("userid"),
+    nickName : "xiaomu"
   };
 
   var userEntity = new userModel(user);
