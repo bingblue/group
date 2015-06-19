@@ -1,47 +1,36 @@
 <% include header.ejs %>
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
-      <form class="" action="">
+      <form action="/users"  method="post">
         <div class="form-group">
-          <label for="exampleInputEmail1">用户名</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+          <label for="userName">用户名</label>
+          <input type="text" class="form-control" id="userName" name="userName" placeholder="请输入用户名">
         </div>
         <div class="form-group">
-          <label for="exampleInputEmail1">昵称</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+          <label for="nickName">昵称</label>
+          <input type="text" class="form-control" id="nickName" name="nickName" placeholder="请输入昵称">
         </div>
         <div class="form-group">
-          <label for="exampleInputEmail1">密码</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+          <label for="userPwd">密码</label>
+          <input type="password" class="form-control" id="userPwd" name="userPwd" placeholder="请输入密码">
         </div>
         <div class="form-group">
-          <label for="exampleInputEmail1">性别</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+          <label for="userSex">性别</label>
+          <select class="form-control" id="userSex" name="userSex">
+            <option>男</option>
+            <option>女</option>
+            <option>人妖</option>
+          </select>
         </div>
         <div class="form-group">
-          <label for="exampleInputEmail1">手机号</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+          <label for="userPhone">手机号</label>
+          <input type="tel" class="form-control" id="userPhone" name="userPhone" placeholder="请输入手机号">
         </div>
         <div class="form-group">
-          <label for="exampleInputEmail1">邮箱</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+          <label for="userEmail">邮箱</label>
+          <input type="email" class="form-control" id="userEmail" name="userEmail" placeholder="请输入邮箱">
         </div>
-        <div class="form-group">
-          <label for="exampleInputEmail1">地址</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-        </div>
-        <div class="form-group">
-          <label for="exampleInputEmail1">邮编</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-        </div>
-        <div class="form-group">
-          <label for="exampleInputEmail1">用户名</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-        </div>
-        <div class="form-group">
-          <label for="exampleInputEmail1">用户名</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-        </div>
+        <input type="submit">
       </form>
     </div>
   </div>

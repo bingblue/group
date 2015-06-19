@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node-dev ./bin/www"
+    "start": "node-dev --debug ./bin/www"
   },
   "author": {
     "name": "小牧COOL",

@@ -32,15 +32,29 @@ Counters.prototype.save = function(callback) {
     callback(null, user);
   });
 };
-Counters.getNextSequence = function(name) {
-  var promise = new mongoose.Promise();
+Counters.getNextSequence = function(name,callback) {
+  // var promise = new mongoose.Promise();
+  // countersModel.findAndModify({}, [], { $inc: { seq: 1 } }, {'new':true, "upsert": true}, function (err,ret) {
+  //   if (err) throw err;
+  //   console.log(ret.value.seq);
+  //   // promise.resolve.bind(promise)(err, ret.value.seq);
+  //   promise.resolve(ret.value.seq);
+  // });
+  // console.log(promise);
+  // return promise;
+  // console.log(promise);
+  // 原始方法
   countersModel.findAndModify({}, [], { $inc: { seq: 1 } }, {'new':true, "upsert": true}, function (err,ret) {
-    if (err) throw err;
-    console.log(ret.value.seq);
-    promise.resolve(err, ret.value.seq);
+    if (err) {
+      callback(err);
+    }else{
+      callback(null,ret.value.seq);
+    }
   });
-  return promise;
-  console.log(promise);
+  // promise 用法错误
+  // var promise = countersModel.findAndModify({}, [], { $inc: { seq: 1 } }, {'new':true, "upsert": true}).exec();
+  // console.log(promise);
+  // return promise;
 };
 
 module.exports = Counters;
