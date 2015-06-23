@@ -117,12 +117,29 @@ User.prototype.save = function(callback) {
   // });
 };
 
-User.getByName = function(name, callback) {
-  userModel.findOne({name: name}, function (err, user) {
+User.getByUserName = function(userName, callback) {
+  userModel.findOne({userName: userName}, function (err, user) {
     if (err) {
       return callback(err);
     }
     callback(null, user);
+  });
+};
+
+User.updateByUserName = function(updateUser, callback) {
+  userModel.findOneAndUpdate({userName: updateUser.userName},{$set:updateUser},{new:true},function (err, user) {
+    if (err) {
+      return callback(err);
+    }
+    callback(null, user);
+    // userModel.findById(user._id, function (err, user) {
+    //   if (err) {
+    //     return callback(err);
+    //   }
+    //   callback(null, user);
+    // });
+    //findOneAndUpdate 方法返回的是修改前的数据，WTF！
+    //已解决：设置options{new:true}
   });
 };
 

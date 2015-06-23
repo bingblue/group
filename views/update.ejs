@@ -1,0 +1,37 @@
+<% include header.ejs %>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <form action="/users/update"  method="post">
+        <div class="form-group">
+          <label for="userName">用户名</label>
+          <input type="text" value='<%= user.userName?user.userName:"" %>' class="form-control" id="userName" name="userName" placeholder="请输入用户名">
+        </div>
+        <div class="form-group">
+          <label for="nickName">昵称</label>
+          <input type="text" value='<%= user.nickName?user.nickName:"" %>' class="form-control" id="nickName" name="nickName" placeholder="请输入昵称">
+        </div>
+        <div class="form-group">
+          <label for="userPwd">密码</label>
+          <input type="password" value='<%= user.userPwd?user.userPwd:"" %>' class="form-control" id="userPwd" name="userPwd" placeholder="请输入密码">
+        </div>
+        <div class="form-group">
+          <label for="userSex">性别</label>
+          <select class="form-control" id="userSex" name="userSex">
+            <option <%= user.userSex=="男"?"selected":"" %>>男</option>
+            <option <%= user.userSex=="女"?"selected":"" %>>女</option>
+            <option <%= user.userSex=="人妖"?"selected":"" %>>人妖</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="userPhone">手机号</label>
+          <input type="tel" value='<%= user.userPhone?user.userPhone:"" %>' class="form-control" id="userPhone" name="userPhone" placeholder="请输入手机号">
+        </div>
+        <div class="form-group">
+          <label for="userEmail">邮箱</label>
+          <input type="email" value='<%= user.userEmail?user.userEmail:"" %>' class="form-control" id="userEmail" name="userEmail" placeholder="请输入邮箱">
+        </div>
+        <input type="submit">
+      </form>
+    </div>
+  </div>
+<% include footer.ejs %>
