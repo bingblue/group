@@ -320,3 +320,21 @@ a {
   display: inline-block;
   margin-top: -5px;
 }
+.nav-btn{
+  height: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+    text-align: center;
+}
+.nav-btn .btn-success{
+  border-radius: 0;
+  margin-right: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+.nav-btn .btn-info{
+  border-radius: 0;
+  margin-right: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
