@@ -302,3 +302,21 @@ textarea {
         page-break-after: avoid;
     }
 }
+/* ==========================================================================
+   Group Design CSS
+   author:小牧COOL;
+   QQ群：206683621
+   ========================================================================== */
+body {
+  padding-top: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+.navbar-brand>img{
+  height: 30px;
+  display: inline-block;
+  margin-top: -5px;
+}

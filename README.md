@@ -15,6 +15,8 @@ group
 - 问答模块(/question)
 - 个人主页(/user/id)
 - 个人信息(/user/id/info)
+- 个人简历(/user/id/resume)
+- 时间轴(timeline、个人主页、简历、等)
 - 招聘信息(/business/offer)
 - 聊天系统(/chat)
 
