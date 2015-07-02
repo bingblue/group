@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>首页</title>
+    <meta name="keywords" content="bingblue、冰蓝、冰蓝科技、群官网、nodejs">
+    <meta name="description" content="冰蓝科技 - 中国最炫、最潮流的科技网站，我们追寻最前沿的技术、展现最炫酷的效果，让你感受科技无可抵挡的魅力！">
+    <meta name="author" contect="小牧COOL">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes"> 
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+  </head>
+  <body>
+    <!--[if lt IE 9]>
+      <p class="browsehappy">你正在使用 <strong>过时</strong> 的浏览器. 请 <a href="http://browsehappy.com/">更新你的游览器</a> 来更好的体验我们的网站.</p>
+    <![endif]-->
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-fixed-top navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#brand" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/index"><img alt="bingblue" src="img/logo-b.png"> 冰蓝科技 </a>
+        </div>
+        <div class="collapse navbar-collapse" id="brand">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/index"><i class="fa fa-home"></i> 首页 <span class="sr-only">(current)</span></a></li>
+            <li class="dropdown">
+              <a href="/chat"><i class="fa fa-comments"></i> 群聊 </a>
+            </li>
+            <li>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users"></i> 社区 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="/question"><i class="fa fa-retweet"></i>&nbsp;&nbsp;问答社区</a></li>
+                <li><a href="/business"><i class="fa fa-graduation-cap"></i>&nbsp;&nbsp;人才市场</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="/tops"><i class="fa fa-diamond"></i>&nbsp;&nbsp;排行榜</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="navbar-form navbar-left hidden-sm" role="search">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search">
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <div class="nav-login">
+                <a class="btn btn-success" href="/login"> 登录 </a>
+                <a class="btn btn-info" href="/reg"> 注册 </a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div style="min-height:800px;width:100%;background:#fff;"></div>
+        </div>
+      </div>
+    </div>
+    
+    <footer class="bg-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <h4><i class="fa fa-gittip"></i> 致谢</h4>
+            <div class="">
+              <img class="img-responsive center-block logo-max-w" src="img/logo-all.png" alt="bingblue">
+              <ul class="power-ul">
+                <li>
+                  <span class="powered">Created by:</span>
+                  <a href="#" class="val" data-toggle="tooltip" data-placement="top" title="QQ:895355044"><i class="fa fa-at"></i> 小牧COOL</a>
+                </li>
+                <li>
+                  <span class="powered">Logo by:</span>
+                  <a href="#" class="val" data-toggle="tooltip" data-placement="top" title="QQ:111111111"><i class="fa fa-user"></i> 小色</a>
+                   & 
+                  <a href="#" class="val" data-toggle="tooltip" data-placement="top" title="QQ:111111111"><i class="fa fa-user"></i> 大脚</a>
+                </li>
+                <li>
+                  <span class="powered">Designed by:</span>
+                  <a href="#" class="val" data-toggle="tooltip" data-placement="top" title="QQ:111111111"><i class="fa fa-twitter"></i> Bootstrap</a>
+                </li>
+                <li>
+                  <span class="powered">Discussed by:</span>
+                  <a href="#" class="val" data-toggle="tooltip" data-placement="top" title="QQ群:206683621"><i class="fa fa-qq"></i> 206683621</a>
+                </li>
+                <li>
+                  <span class="powered">Issues by:</span>
+                  <a href="#" class="val" data-toggle="tooltip" data-placement="top" title="GitHub Project"><i class="fa fa-github"></i> GitHub</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h4><i class="fa fa-rocket"></i> 技术 & 贡献</h4>
+            <div class="">
+              <div class="support-ul">
+                <a href="#" data-toggle="tooltip" title="GitHub Project"><i class="fa fa-user"></i> 小牧COOL</a>
+                <a href="#" data-toggle="tooltip" title="GitHub Project"><i class="fa fa-at"></i> Zing</a>
+                <a href="#" data-toggle="tooltip" title="GitHub Project"><i class="fa fa-user"></i> 小色</a>
+                <a href="#" data-toggle="tooltip" title="GitHub Project"><i class="fa fa-user"></i> 大脚</a>
+                <a href="#" data-toggle="tooltip" title="GitHub Project"><i class="fa fa-user"></i> 大脚</a>
+                <a href="#" data-toggle="tooltip" title="GitHub Project"><i class="fa fa-tag"></i> Nodejs</a>
+                <a href="#" data-toggle="tooltip" title="GitHub Project"><i class="fa fa-tag"></i> MongoDB</a>
+                <a href="#" data-toggle="tooltip" title="GitHub Project"><i class="fa fa-html5"></i> HTML5</a>
+                <a href="#" data-toggle="tooltip" title="GitHub Project"><i class="fa fa-css3"></i> CSS3</a>
+                <a href="#" data-toggle="tooltip" title="GitHub Project"><i class="fa fa-tag"></i> JQuery</a>
+                <a href="#" data-toggle="tooltip" title="GitHub Project"><i class="fa fa-twitter"></i> Bootstrap</a>
+                <a href="#" data-toggle="tooltip" title="GitHub Project"><i class="fa fa-git-square"></i> git</a>
+                <a href="#" data-toggle="tooltip" title="GitHub Project"><i class="fa fa-github-alt"></i> GitHub</a>
+                <a href="#" data-toggle="tooltip" title="GitHub Project"><i class="fa fa-tag"></i> Express</a>
+                <a href="#" data-toggle="tooltip" title="GitHub Project"><i class="fa fa-steam"></i> Steam</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h4><i class="fa fa-navicon"></i> 导航</h4>
+            <div class="">
+              <nav class="nav-ul">
+                <a href="#">首页</a>
+                <a href="#">人才市场</a>
+                <a href="#">人才市场</a>
+                <a href="#">人才市场</a>
+                <a href="#">返回顶部</a>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-bottom2">
+        <div class="container">
+          <!-- 版权说明 -->
+          <p class="footer-copyright">
+            <span class="unline">
+              Copyright &copy; 2015 &middot; 
+              <a href="#" >
+                <abbr data-toggle="tooltip" data-placement="top" title="还没有成立呢~亲。" class="abbr_no">冰蓝科技</abbr>
+              </a>
+               , Inc. 
+            </span>
+            <span class="unline">
+              All Rights Reserved &middot; <b class="powered"> Powered by : </b>
+              <abbr data-toggle="tooltip" data-placement="top" title="QQ：895355044" class="me">小牧COOL</abbr>
+            </span> 
+          </p>
+          <!-- 版权说明END -->
+          <div>
+            <script src="http://s13.cnzz.com/stat.php?id=4861395&web_id=4861395&show=pic" language="JavaScript"></script>
+            &nbsp;&nbsp;<i class="fa fa-qq"></i><span>&nbsp;QQ群：206683621</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.js"><\/script>')</script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>
