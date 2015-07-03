@@ -633,3 +633,36 @@ footer .nav-ul a:hover{
   background-color: #48c9b0;
   border-color: #48c9b0;
   }
+
+/* 注册 */
+.checkbox{
+  line-height: 20px;
+  color: #999;
+  text-align: center;
+}
+.signup .fa:before{
+  display: inline-block;
+  min-width: 14px;
+}
+.signup .form-horizontal{
+  max-width: 380px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+.signup .checkbox:hover{
+  color: green;
+}
+.signup .form-horizontal .form-group{
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 15px;
+}
+.signup .btn-info{
+  width: 100%;
+  height: 45px;
+}
+.wap{
+  background-color: #fff;
+  padding: 40px 30px;
+  border-radius: 10px;
+}
