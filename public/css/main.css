@@ -310,6 +310,7 @@ textarea {
 
 body {
   padding-top: 50px;
+  min-width: 300px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -674,4 +675,17 @@ footer .nav-ul a:hover{
   background-color: #fff;
   padding: 40px 30px;
   border-radius: 10px;
+}
+@media (max-width: 768px) {
+}
+@media (max-width: 380px) {
+  .wap{
+    padding: 20px 10px;
+  }
+  .signup h1{
+    font-size: 30px;
+  }
+  .has-error .checkbox,.has-success .checkbox{
+    width: 87%;
+  }
 }
