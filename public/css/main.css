@@ -640,6 +640,15 @@ footer .nav-ul a:hover{
   color: #999;
   text-align: center;
 }
+.signup h1{
+  color: #fff;
+  vertical-align: bottom;
+  margin-bottom: 30px;
+}
+.signup h1 img{
+  width: 50px;
+  margin-right: 10px;
+}
 .signup .fa:before{
   display: inline-block;
   min-width: 14px;

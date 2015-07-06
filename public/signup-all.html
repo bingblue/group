@@ -18,6 +18,7 @@
     <!-- <link href="css/formValidation.min.css" rel="stylesheet"> -->
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
+    <script src="http://api.geetest.com/get.php"></script>  
     <!-- <link href="css/flat-ui.min.css" rel="stylesheet"> -->
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
@@ -29,12 +30,13 @@
   <body style="background:#1abc9c;padding-top:50px;">
     <div class="signup container">
       <div class="row">
-        <div class="col-md-12 text-center">
-          <h1 class="pull-left">欢迎注册冰蓝账号!</h1>
+        <div class="col-md-12 text-center animated rubberBand">
+          <h1>
+          <img src="img/logo-b.png" alt="bingblue">注册冰蓝账号</h1>
         </div>
       </div>
        <div class="row">
-         <div class="col-md-6 col-md-offset-3">
+         <div class="col-md-6 col-md-offset-3 animated bounceInLeft">
           <form id="sign-form" class="form-horizontal wap" action="/users/add" method="post">
             <div class="form-group">
               <div class="input-group">
@@ -72,8 +74,16 @@
             </div>
             <div class="form-group">
               <div class="input-group">
-                <span class="fa fa-envelope input-group-addon"></span>
+                <span class="fa fa-envelope input-group-addon jq-btn"></span>
                 <input type="email" class="form-control" id="userEmail" name="userEmail" placeholder="请输入邮箱">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12"><i class="fa fa-puzzle-piece"></i> 拖动验证：</div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <div id="div_id_embed"></div>
               </div>
             </div>
             <!-- <div class="form-group">
@@ -132,11 +142,31 @@
     <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.js"><\/script>')</script>
     <script src="js/plugins.js"></script>
     <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="js/formValidation.min.js"></script>
+    <script src="js/formValidation.js"></script>
     <script src="js/fd-bootstrap.min.js"></script>
     <script src="js/main.js"></script>
     <script type="text/javascript">
     $(function(){
+      $(".jq-btn").click(function(){
+        $.ajax({
+          url : "a.php",
+          data:{},
+          dataType:"text",
+          success : function(data){
+            var data = eval("("+data+")");
+            if(data.success=="1"){
+              alert(data.message);
+            }else{
+              alert(data.message);
+            }
+          }
+        });
+      });
+      var gt_captcha_obj = new window.Geetest({
+        gt: "11f0515f156aa183d00d2a6cd848248d",
+        product: "float"
+      })
+      gt_captcha_obj.appendTo("#div_id_embed");
       // Generate a simple captcha
       function randomNumber(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
@@ -151,7 +181,7 @@
         icon: {
           valid: 'fa fa-check',//thumbs-up
           invalid: 'fa fa-times',//thumbs-down
-          validating: 'fa fa-spinner'//spinner
+          validating: 'fa fa-spinner fa-pulse'//spinner
         },
         fields: {
           userName: {
@@ -169,6 +199,15 @@
                 enabled: true,
                 regexp: /(?!^\d+$)^[0-9a-zA-Z]*$/i,
                 message: '用户名只能输入数字或字符a-z,且不能全为数字！'
+              },
+              remote: {
+                url: 'a.php',
+                type: 'POST',
+                dataType:"json",
+                validKey: 'valid',
+                dataType:"text",//因本地环境，所以设置 text，线上应该是 json，并且 使用min.js
+                delay: 1000,
+                message:"用户名已注册！"
               }
             }
           },
