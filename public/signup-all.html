@@ -74,7 +74,7 @@
             </div>
             <div class="form-group">
               <div class="input-group">
-                <span class="fa fa-envelope input-group-addon jq-btn"></span>
+                <span class="fa fa-envelope input-group-addon"></span>
                 <input type="email" class="form-control" id="userEmail" name="userEmail" placeholder="请输入邮箱">
               </div>
             </div>
@@ -147,21 +147,6 @@
     <script src="js/main.js"></script>
     <script type="text/javascript">
     $(function(){
-      $(".jq-btn").click(function(){
-        $.ajax({
-          url : "a.php",
-          data:{},
-          dataType:"text",
-          success : function(data){
-            var data = eval("("+data+")");
-            if(data.success=="1"){
-              alert(data.message);
-            }else{
-              alert(data.message);
-            }
-          }
-        });
-      });
       var gt_captcha_obj = new window.Geetest({
         gt: "11f0515f156aa183d00d2a6cd848248d",
         product: "float"
