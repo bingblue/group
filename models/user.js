@@ -5,30 +5,27 @@ var counters = require('./counters');
 var userSchema = new mongoose.Schema({
   userId: {//用户ID 类似QQ号
     type: Number,
-    exist: true,//是否存在即验证
     unique: true
   },
-
+  // var emailRegExp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
   //必填字段
   userName: {//用户名
     type: 'String',
-    required: true,//是否必填项
-    exist: true,//是否存在即验证
-    maxLength: 20,
-    minLength: 6
+    required: '用户名不能为空!',//是否必填项
+    unique: true,
+    match:[/(?!^\d+$)^[0-9a-zA-Z]{6,15}$/, "用户名只能输入数字、字符a-z,且不能全为数字,6~15个字符!"]
   },
   userPwd: {//密码
     type: 'String',
-    required: true
+    required: '密码不能为空!'
   },
   nickName: {//昵称
     type: 'String',
-    maxLength: 80,
-    minLength: 1
+    match:[/^[0-9a-zA-Z\u4e00-\u9fa5]{1,20}$/, "昵称只能输入数字、字符a-z、中文,最长20个字符!" ]
   },
   userPhone: {
     type: 'String',
-    required: true
+    required: '手机号不能为空!'
   },
   userSex: {
     type: 'String',
@@ -37,7 +34,8 @@ var userSchema = new mongoose.Schema({
   },
   userEmail: {
     type: 'String',
-    required: true
+    required: '邮箱不能为空!',
+    match:[/[_a-zA-Z\d\-\./]+@[_a-zA-Z\d\-]+(\.[_a-zA-Z\d\-]+)+/,'邮箱格式不正确']
   },
 
   //系统生成字段
@@ -73,7 +71,7 @@ function User(user) {
 };
 
 User.prototype.save = function(callback) {
-  var password_MD5 = crypto.createHash('md5').update(this.password+"").digest('hex');
+  var password_MD5 = crypto.createHash('md5').update(this.userPwd+"").digest('hex');
   var user = {
     userName: this.userName,
     userPwd: password_MD5,

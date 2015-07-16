@@ -1,0 +1,75 @@
+<nav class="navbar navbar-fixed-top navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#brand" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/index"><img alt="bingblue" src="img/logo-b.png"> 冰蓝科技 </a>
+    </div>
+    <div class="collapse navbar-collapse" id="brand">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/index"><i class="fa fa-home"></i> 首页 <span class="sr-only">(current)</span></a></li>
+        <li class="dropdown">
+          <a href="/chat"><i class="fa fa-comments"></i> 群聊 </a>
+        </li>
+        <% if(user){%>
+          <li>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users"></i> 社区 <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/question"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;我的博客</a></li>
+              <li><a href="/question"><i class="fa fa-retweet"></i>&nbsp;&nbsp;我的问答</a></li>
+              <li><a href="/business"><i class="fa fa-graduation-cap"></i>&nbsp;&nbsp;我的简历</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="/tops"><i class="fa fa-diamond"></i>&nbsp;&nbsp;我的荣誉</a></li>
+            </ul>
+          </li>
+        <% }else{ %>
+          <li>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users"></i> 社区 <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/question"><i class="fa fa-retweet"></i>&nbsp;&nbsp;问答社区</a></li>
+              <li><a href="/business"><i class="fa fa-graduation-cap"></i>&nbsp;&nbsp;人才市场</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="/tops"><i class="fa fa-diamond"></i>&nbsp;&nbsp;排行榜</a></li>
+            </ul>
+          </li>
+        <% } %>
+      </ul>
+      <form class="navbar-form navbar-left hidden-sm" role="search">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+          </span>
+        </div>
+      </form>
+      <% if(user){%>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img class="navbar-brand-img img-circle" alt="username" src="img/user-avata.jpg"> <%= user.userName%>  <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#"><i class="fa fa-user"></i>&nbsp;&nbsp;个人资料</a></li>
+            <li><a href="#"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;账户余额</a></li>
+            <li><a href="#"><i class="fa fa-cog fa-spin"></i>&nbsp;&nbsp;修改密码</a></li>
+            <li role="separator" class="divider"></li>
+            <li class="dropdown-header">危险操作</li>
+            <li><a href="/logout"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;注销登录</a></li>
+          </ul>
+        </li>
+      </ul>
+      <% }else{ %>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <div class="nav-login">
+            <a class="btn btn-success" href="/login"> 登录 </a>
+            <a class="btn btn-info" href="/reg"> 注册 </a>
+          </div>
+        </li>
+      </ul>
+      <% } %>
+    </div>
+  </div>
+</nav>

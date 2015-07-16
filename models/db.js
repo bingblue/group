@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/group');
+var settings = require('./settings');
+mongoose.connect('mongodb://'+settings.host+'/'+settings.db);
 
 module.exports = mongoose;

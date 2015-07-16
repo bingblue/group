@@ -1,0 +1,40 @@
+<% include header.ejs %>
+<style type="text/css">
+  body{
+    background: #1abc9c;
+  }
+</style>
+<div class="container">
+  <div class="row login">
+    <div class="col-md-5 col-sm-5">
+      <div class="login-icon animated flipInY">
+        <img src="img/logo-b.png" alt="bingblue">
+        <h4>Welcome to <small>Bingblue</small></h4>
+      </div>
+    </div>
+    <div class="col-md-5 col-sm-6">
+      <form class="login-form animated fadeInRight" action="/users/login" method="post">
+        <% if (error) { %>
+           <div class="alert alert-danger in fade" role="alert">
+           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+           </button>
+           <%= error %>
+           </div>
+         <% } %>
+        <div class="form-group">
+          <input type="text" class="form-control login-field" value="" placeholder="用户名/手机号/ID号" id="login-name" name="userName"/>
+          <label class="login-field-icon fa fa-user" for="login-name"></label>
+        </div>
+        <div class="form-group">
+          <input type="password" name="userPwd" class="form-control login-field" value="" placeholder="密码" id="login-pass" />
+          <label class="login-field-icon fa fa-lock" for="login-pass"></label>
+        </div>
+        <a class="btn btn-primary btn-lg btn-block" href="javascript:$('.login-form').submit();"><i class="fa fa-sign-in"></i> 登录</a>
+        <a class="login-link pull-right" href="/reg">注册?</a>
+        <a class="login-link text-left" href="#">忘记密码?</a>
+      </form>
+    </div>
+  </div>
+</div>
+<% include footer.ejs %>

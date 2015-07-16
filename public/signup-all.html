@@ -147,11 +147,11 @@
     <script src="js/main.js"></script>
     <script type="text/javascript">
     $(function(){
-      var gt_captcha_obj = new window.Geetest({
-        gt: "11f0515f156aa183d00d2a6cd848248d",
-        product: "float"
-      })
-      gt_captcha_obj.appendTo("#div_id_embed");
+      // var gt_captcha_obj = new window.Geetest({
+      //   gt: "11f0515f156aa183d00d2a6cd848248d",
+      //   product: "float"
+      // })
+      // gt_captcha_obj.appendTo("#div_id_embed");
       // Generate a simple captcha
       function randomNumber(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
@@ -174,8 +174,8 @@
               stringLength: {
                 enabled: true,
                 min: 6,
-                max: 20,
-                message: '用户名6~20个字符！'
+                max: 15,
+                message: '用户名6~15个字符！'
               },
               notEmpty: {
                 message: '用户名不能为空！'
@@ -200,16 +200,16 @@
             validators: {
               stringLength: {
                 enabled: true,
-                max: 30,
-                message: '昵称最多30个字符！'
+                max: 20,
+                message: '昵称最多20个字符！'
               },
               notEmpty: {
                 message: '昵称不能为空！'
               },
               regexp: {
-                enabled: false,
-                regexp: /^[a-z]+$/i,
-                message: '昵称只能输入数字或字符a-z,且不能全为数字！'
+                enabled: true,
+                regexp: /^[0-9a-zA-Z\u4e00-\u9fa5]{1,20}$/i,
+                message: '昵称只能输入数字、字符、中文,最长20个字符！'
               }
             }
           },

@@ -1,37 +1,223 @@
 <% include header.ejs %>
+<style type="text/css">
+  body{
+    background: #1abc9c;
+  }
+</style>
+<div class="signup container">
   <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-      <form action="/users/add"  method="post">
+    <div class="col-md-12 text-center animated rubberBand">
+      <h1>
+      <img src="img/logo-b.png" alt="bingblue">注册冰蓝账号</h1>
+    </div>
+  </div>
+   <div class="row">
+     <div class="col-md-6 col-md-offset-3 animated bounceInLeft">
+      <form id="sign-form" class="form-horizontal wap" action="/users/add" method="post">
         <div class="form-group">
-          <label for="userName">用户名</label>
-          <input type="text" class="form-control" id="userName" name="userName" placeholder="请输入用户名">
+          <div class="input-group">
+            <span class="fa fa-user input-group-addon"></span>
+            <input type="text" class="form-control" id="userName" name="userName" placeholder="请输入用户名">
+          </div>
         </div>
         <div class="form-group">
-          <label for="nickName">昵称</label>
-          <input type="text" class="form-control" id="nickName" name="nickName" placeholder="请输入昵称">
+          <div class="input-group">
+            <span class="fa fa-pencil-square input-group-addon"></span>
+            <input type="text" class="form-control" id="nickName" name="nickName" placeholder="请输入昵称">
+          </div>
         </div>
         <div class="form-group">
-          <label for="userPwd">密码</label>
-          <input type="password" class="form-control" id="userPwd" name="userPwd" placeholder="请输入密码">
+          <div class="input-group">
+            <span class="fa fa-lock input-group-addon"></span>
+            <input type="password" class="form-control" id="userPwd" name="userPwd" placeholder="请输入密码">
+          </div>
         </div>
         <div class="form-group">
-          <label for="userSex">性别</label>
-          <select class="form-control" id="userSex" name="userSex">
-            <option>男</option>
-            <option>女</option>
-            <option>人妖</option>
-          </select>
+          <div class="input-group">
+            <span class="fa fa-venus-mars input-group-addon"></span>
+            <select class="form-control" id="userSex" name="userSex">
+              <option>男</option>
+              <option>女</option>
+              <option>人妖</option>
+            </select>
+          </div>
         </div>
         <div class="form-group">
-          <label for="userPhone">手机号</label>
-          <input type="tel" class="form-control" id="userPhone" name="userPhone" placeholder="请输入手机号">
+          <div class="input-group">
+            <span class="fa fa-phone-square input-group-addon"></span>
+            <input type="tel" class="form-control" id="userPhone" name="userPhone" placeholder="请输入手机号">
+          </div>
         </div>
         <div class="form-group">
-          <label for="userEmail">邮箱</label>
-          <input type="email" class="form-control" id="userEmail" name="userEmail" placeholder="请输入邮箱">
+          <div class="input-group">
+            <span class="fa fa-envelope input-group-addon"></span>
+            <input type="email" class="form-control" id="userEmail" name="userEmail" placeholder="请输入邮箱">
+          </div>
         </div>
-        <input type="submit">
+        <!-- <div class="form-group">
+          <div class="col-sm-12"><i class="fa fa-puzzle-piece"></i> 拖动验证：</div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-12">
+            <div id="div_id_embed"></div>
+          </div>
+        </div> -->
+        <!-- <div class="form-group">
+          <label class="col-sm-3 control-label" id="captchaOperation"></label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" name="captcha" />
+          </div>
+        </div> -->
+        <div class="form-group">
+          <div class="checkbox">
+            <label>
+              <input class="" type="checkbox" name="agree" value="agree" /> 阅读并接受<a href="#">《冰蓝用户协议》</a>
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-12">
+            <button type="submit" class="btn btn-info" name="signup" value="注册账号"><i class="fa fa-send"></i> 注册账号</button>
+          </div>
+        </div>
       </form>
     </div>
   </div>
+</div>
 <% include footer.ejs %>
+<script src="../js/formValidation.min.js"></script>
+<script src="../js/fd-bootstrap.min.js"></script>
+<script type="text/javascript">
+$(function(){
+  // var gt_captcha_obj = new window.Geetest({
+  //   gt: "11f0515f156aa183d00d2a6cd848248d",
+  //   product: "float"
+  // })
+  // gt_captcha_obj.appendTo("#div_id_embed");
+  // Generate a simple captcha
+  function randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  };
+  $('#captchaOperation').html([randomNumber(1, 100), '+', randomNumber(1, 200), '='].join(' '));
+  $('#sign-form').formValidation({
+    err: {
+      container: 'tooltip'
+    },
+    trigger: 'blur',
+    message: '请输入正确信息',
+    icon: {
+      valid: 'fa fa-check',//thumbs-up
+      invalid: 'fa fa-times',//thumbs-down
+      validating: 'fa fa-spinner fa-pulse'//spinner
+    },
+    fields: {
+      userName: {
+        validators: {
+          stringLength: {
+            enabled: true,
+            min: 6,
+            max: 15,
+            message: '用户名6~15个字符！'
+          },
+          notEmpty: {
+            message: '用户名不能为空！'
+          },
+          regexp: {
+            enabled: true,
+            regexp: /(?!^\d+$)^[0-9a-zA-Z]*$/i,
+            message: '用户名只能输入数字或字符a-z,且不能全为数字！'
+          },
+          remote: {
+            url: '/api/isRepeatByName',
+            type: 'POST',
+            validKey: 'valid',
+            dataType:"json",
+            delay: 1000,
+            message:"用户名已注册！"
+          }
+        }
+      },
+      nickName: {
+        validators: {
+          stringLength: {
+            enabled: true,
+            max: 20,
+            message: '昵称最多20个字符！'
+          },
+          notEmpty: {
+            message: '昵称不能为空！'
+          },
+          regexp: {
+            enabled: true,
+            regexp: /^[0-9a-zA-Z\u4e00-\u9fa5]{1,20}$/i,
+            message: '昵称只能输入数字、字符、中文,最长20个字符！'
+          }
+        }
+      },
+      userEmail: {
+        validators: {
+          notEmpty: {
+            message: '邮箱不能为空！'
+          },
+          emailAddress: {
+            message: '邮箱地址不正确！'
+          }
+        }
+      },
+      userPwd: {
+        validators: {
+          stringLength: {
+            enabled: true,
+            max: 30,
+            min: 8,
+            message: '密码最少8个字符！'
+          },
+          notEmpty: {
+            message: '密码不能为空！'
+          },
+          different: {
+            field: 'username',
+            message: '密码不能和用户名相同！'
+          }
+        }
+      },
+      userPhone: {
+        validators: {
+          notEmpty: {
+            message: '手机号不能为空！'
+          },
+          phone:{
+            message: '手机号不正确！',
+            country: 'CN'
+          }
+        }
+      },
+      userSex: {
+        validators: {
+          notEmpty: {
+            message: '性别不能为空！'
+          }
+        }
+      },
+      captcha: {
+        validators: {
+          callback: {
+          message: '小学数学没学好吗？',
+            callback: function(value, validator, $field) {
+              var items = $('#captchaOperation').html().split(' '), sum = parseInt(items[0]) + parseInt(items[2]);
+              return value == sum;
+            }
+          }
+        }
+      },
+      agree: {
+        validators: {
+          notEmpty: {
+            message: '请先同意卖身契！'
+          }
+        }
+      }
+    }
+  });
+});
+</script>
