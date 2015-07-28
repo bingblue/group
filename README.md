@@ -19,6 +19,7 @@ group
 - 时间轴(timeline、个人主页、简历、等)
 - 招聘信息(/business/offer)
 - 聊天系统(/chat)
+- 资料区(/material,收藏功能)
 
 ## Git ##
 1. git clone git@github.com:bingblue/group.git 成功！

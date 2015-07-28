@@ -82,7 +82,7 @@ router.post('/login', function(req, res) {
 /*
  * 按用户名查找用户
  */
-router.all('/user/:userName', function(req, res) {
+router.all('/:userName', function(req, res) {
   var userName = req.params.userName;
   User.getByUserName(userName,function(err,user){
     if(err){
