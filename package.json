@@ -47,7 +47,8 @@
     " connect-flash": "*",
     "connect-mongo": "*",
     "mongodb":"*",
-    "mongoose": "*"
+    "mongoose": "*",
+    "multer": "*"
   },
   "devDependencies": {
     "grunt": "*",

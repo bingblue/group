@@ -26,7 +26,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+// app.use(multer({
+//   dest: 'public/img/temp',
+//   rename: function (fieldname, filename) {
+//     //原来文件名
+//     return filename;
+//     //return Date.now()+filename;
+//   }
+// }));
 app.use(session({
   secret: settings.cookieSecret,
   key: settings.db,//cookie name

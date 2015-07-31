@@ -53,4 +53,14 @@ router.get('/logout', function (req, res) {
   req.flash('success', '登出成功!');
   res.redirect('/');//登出成功后跳转到主页
 });
+
+router.get('/upload',checkLogin);
+router.get('/upload', function(req, res) {
+  res.render('upload', {
+    title: '冰蓝科技 - 上传图片',
+    user: req.session.user,
+    success: req.flash('success').toString(),
+    error: req.flash('error').toString()
+  });
+});
 module.exports = router;
