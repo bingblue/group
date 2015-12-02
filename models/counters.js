@@ -29,7 +29,7 @@ Counters.prototype.save = function(callback) {
     if (err) {
       return callback(err);
     }
-    callback(null, user);
+    callback(null, counters);
   });
 };
 Counters.getNextSequence = function(name,callback) {
