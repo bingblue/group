@@ -1,7 +1,7 @@
 var express = require('express');
 var crypto = require('crypto');
 var router = express.Router();
-var User = require('../models/user');
+//var User = require('../models/user');
 
 /* GET users listing. */
 /*
@@ -16,16 +16,18 @@ router.post('/add', function(req, res) {
     userSex : req.body.userSex,
     userEmail : req.body.userEmail
   });
-  newUser.save(function(err,user){
-    if(err){
-      req.flash('error', err);
-      return res.redirect('/reg');//注册失败返回主册页
-    }else{
-      req.session.user = user;//用户信息存入 session
-      req.flash('success', '注册成功!');
-      res.redirect('/');//注册成功后返回主页
-    }
-  });
+  //newUser.save(function(err,user){
+  //  if(err){
+  //    req.flash('error', err);
+  //    return res.redirect('/reg');//注册失败返回主册页
+  //  }else{
+  //    req.session.user = user;//用户信息存入 session
+  //    req.flash('success', '注册成功!');
+  //    res.redirect('/');//注册成功后返回主页
+  //  }
+  //});
+  req.flash('error', "未连接数据库");
+  return res.redirect('/reg');//注册失败返回主册页
 });
 
 /*
@@ -39,15 +41,16 @@ router.post('/update', function(req, res) {
     userSex : req.body.userSex,
     userEmail : req.body.userEmail
   };
-  User.updateByUserName(updateUser,function(err,user){
-    if(err){
-      res.send(err+"");
-    }else{
-      console.log(user);
-      res.redirect('back');
-      res.render('update', { title: '用户信息更新完成' ,user:user});
-    }
-  });
+  //User.updateByUserName(updateUser,function(err,user){
+  //  if(err){
+  //    res.send(err+"");
+  //  }else{
+  //    console.log(user);
+  //    res.redirect('back');
+  //    res.render('update', { title: '用户信息更新完成' ,user:user});
+  //  }
+  //});
+  res.send("未连接数据库");
 });
 /*
  * 用户登录
@@ -57,25 +60,27 @@ router.post('/login', function(req, res) {
   var userPwd = req.body.userPwd;
   var md5 = crypto.createHash('md5'),
   password = md5.update(userPwd).digest('hex');
-  User.getByUserName(userName,function(err,user){
-    if(err){
-      res.send(err+"");
-    }else{
-      if (!user) {
-        req.flash('error', '用户不存在!'); 
-        return res.redirect('/login');//用户不存在则跳转到登录页
-      }
-      //检查密码是否一致
-      if (user.userPwd != password) {
-        req.flash('error', '密码错误!'); 
-        return res.redirect('/login');//密码错误则跳转到登录页
-      }
-      //用户名密码都匹配后，将用户信息存入 session
-      req.session.user = user;
-      req.flash('success', '登陆成功!');
-      res.redirect('/');
-    }
-  });
+  //User.getByUserName(userName,function(err,user){
+  //  if(err){
+  //    res.send(err+"");
+  //  }else{
+  //    if (!user) {
+  //      req.flash('error', '用户不存在!'); 
+  //      return res.redirect('/login');//用户不存在则跳转到登录页
+  //    }
+  //    //检查密码是否一致
+  //    if (user.userPwd != password) {
+  //      req.flash('error', '密码错误!'); 
+  //      return res.redirect('/login');//密码错误则跳转到登录页
+  //    }
+  //    //用户名密码都匹配后，将用户信息存入 session
+  //    req.session.user = user;
+  //    req.flash('success', '登陆成功!');
+  //    res.redirect('/');
+  //  }
+  //});
+  req.flash('error', '未连接数据库!'); 
+  return res.redirect('/login');//用户不存在则跳转到登录页
   
 });
 
@@ -84,12 +89,13 @@ router.post('/login', function(req, res) {
  */
 router.all('/:userName', function(req, res) {
   var userName = req.params.userName;
-  User.getByUserName(userName,function(err,user){
-    if(err){
-      res.send(err+"");
-    }else{
-      res.render('update', { title: '用户信息更新' ,user:user});
-    }
-  });
+  //User.getByUserName(userName,function(err,user){
+  //  if(err){
+  //    res.send(err+"");
+  //  }else{
+  //    res.render('update', { title: '用户信息更新' ,user:user});
+  //  }
+  //});
+  res.send("未连接数据库");
 });
 module.exports = router;

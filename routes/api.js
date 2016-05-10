@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var User = require('../models/user');
-var Counters = require('../models/counters');
+//var User = require('../models/user');
+//var Counters = require('../models/counters');
 
 var multer = require('multer');
 var storage = multer.diskStorage({
@@ -29,18 +29,19 @@ var upload = multer({ storage: storage });
  * 检查用户名是否重复
  */
 router.all('/isRepeatByName', function (req, res) {
-  var userName = req.body.userName;
-  User.getByUserName(userName,function(err,user){
-    if(err){
-      res.send(err+"");
-    }else{
-      if(user){
-        res.json({valid: false});
-      }else{
-        res.json({valid: true});
-      }
-    }
-  });
+  //var userName = req.body.userName;
+  //User.getByUserName(userName,function(err,user){
+  //  if(err){
+  //    res.send(err+"");
+  //  }else{
+  //    if(user){
+  //      res.json({valid: false});
+  //    }else{
+  //      res.json({valid: true});
+  //    }
+  //  }
+  //});
+  res.json({valid: true});
 });
 /*
  * 用户注册
@@ -62,18 +63,20 @@ router.all('/upload', upload.single('upload-avatar'),function(req, res) {
  * 创建数据库
  */
 router.all('/createID', function(req, res) {
-  var newCounters = new Counters({
-    _id: "userid",
-    seq: 100000
-  });
-  newCounters.save(function(err,user){
-    if(err){
-      req.flash('error', err);
-      res.redirect('/');
-    }else{
-      req.flash('success', "创建成功！");
-      res.redirect('/');
-    }
-  });
+  //var newCounters = new Counters({
+  //  _id: "userid",
+  //  seq: 100000
+  //});
+  //newCounters.save(function(err,user){
+  //  if(err){
+  //    req.flash('error', err);
+  //    res.redirect('/');
+  //  }else{
+  //    req.flash('success', "创建成功！");
+  //    res.redirect('/');
+  //  }
+  //});
+  req.flash('error', "未连接数据库");
+  res.redirect('/');
 });
 module.exports = router;

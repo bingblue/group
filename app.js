@@ -6,8 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var flash = require('connect-flash');
-var MongoStore = require('connect-mongo')(session);
-var settings = require('./models/settings');
+//var MongoStore = require('connect-mongo')(session);
+//var settings = require('./models/settings');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -34,16 +34,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 //     //return Date.now()+filename;
 //   }
 // }));
-app.use(session({
-  secret: settings.cookieSecret,
-  key: settings.db,//cookie name
-  cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},//30 days
-  store: new MongoStore({
-    db: settings.db,
-    host: settings.host,
-    port: settings.port
-  })
-}));
+//app.use(session({
+//  secret: settings.cookieSecret,
+//  key: settings.db,//cookie name
+//  cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},//30 days
+//  store: new MongoStore({
+//    db: settings.db,
+//    host: settings.host,
+//    port: settings.port
+//  })
+//}));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/api', api);
