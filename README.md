@@ -17,7 +17,7 @@ group
 
 ##项目功能 (/group)##
 
-- 首页(/index)
+- [首页][1](/index)
 - 登录(/login)
 - 登出(/logout)
 - 问答模块(/question)
@@ -33,3 +33,5 @@ group
 1. git clone git@github.com:bingblue/group.git 成功！
 2. 修改于 github.
 3. git push -u origin master 成功！
+
+[1]:http://112.74.126.133/
