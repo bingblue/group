@@ -11,8 +11,8 @@ group
 
 - 安装nodejs
 - 在命令行执行 `npm install -g node-dev` 
-- 在 `gropu/` 目录下执行 `npm install` 
-- 在 `gropu/` 目录下执行 `npm start` 
+- 在 `group/` 目录下执行 `npm install` 
+- 在 `group/` 目录下执行 `npm start` 
 - 没有报错在浏览器里输入 `localhost` 访问
 
 ##项目功能 (/group)##
