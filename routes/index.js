@@ -18,14 +18,8 @@ function checkNotLogin(req, res, next) {
   next();
 }
 router.get('/', function(req, res) {
-  res.render('index', { 
-    title: '冰蓝科技 - 首页',
-    // user: req.session.user,
-    //success: req.flash('success').toString(),
-    //error: req.flash('error').toString()
-    user: null,
-    success:"成功！",
-    error: "服务器未连接数据库"
+  res.render('countdown', { 
+    title: '冰蓝科技 - 上线倒计时!'
   });
 });
 router.get('/reg',checkNotLogin);
