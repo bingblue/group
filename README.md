@@ -9,7 +9,7 @@ group
 
 ##项目功能 (/group)##
 
-- 首页(/index)
+- [首页][1](/index)
 - 登录(/login)
 - 登出(/logout)
 - 问答模块(/question)
@@ -18,7 +18,11 @@ group
 - 招聘信息(/business/offer)
 - 聊天系统(/chat)
 
-## Git ##
-1. git clone git@github.com:bingblue/group.git 成功！
-2. 修改于 github.
-3. git push -u origin master 成功！
+## 计划任务 ##
+[ ] 项目上线   - < 成成  2016-11-11 >
+[ ] and so on ...
+[ ] 打通数据库 - < 小牧  2016-06-12 >
+[ ] 网站备案   - < 小牧  2016-06-10 >
+[X] 增加倒计时 - < 成成  2016-06-01 >
+
+[1]:http://112.74.126.133/
