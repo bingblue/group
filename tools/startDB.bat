@@ -1,5 +1,5 @@
 @echo off
-f:
-cd F:\MongoDB\Server\bin
-mongod --config F:\MongoDB\etc\mongodb.conf
+d:
+cd D:\MongoDB\Server\3.4\bin
+mongod --config D:\MongoDB\etc\mongodb.conf
 echo
