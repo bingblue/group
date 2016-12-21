@@ -29,16 +29,26 @@ var upload = multer({ storage: storage });
  * 检查用户名是否重复
  */
 router.all('/isRepeatByName', function (req, res) {
-  var userName = req.body.userName;
+  var userName = req.param('userName');
   User.getByUserName(userName,function(err,user){
+    
+    var json = {
+        "code":200,
+        "msg":"可以注册！",
+        "body":{
+          valid: true,
+          userName:userName
+        }
+      }
     if(err){
       res.send(err+"");
     }else{
       if(user){
-        res.json({valid: false});
-      }else{
-        res.json({valid: true});
+        json.code = 10000;
+        json.msg = "用户名已注册";
+        json.body.valid = false;
       }
+      res.json(json);
     }
   });
 });

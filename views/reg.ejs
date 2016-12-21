@@ -85,7 +85,7 @@
   </div>
 </div>
 <% include footer.ejs %>
-<script src="../js/formValidation.min.js"></script>
+<script src="../js/formValidation.js"></script>
 <script src="../js/fd-bootstrap.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -130,7 +130,7 @@ $(function(){
           remote: {
             url: '/api/isRepeatByName',
             type: 'POST',
-            validKey: 'valid',
+            validKey: ['body','valid'],
             dataType:"json",
             delay: 1000,
             message:"用户名已注册！"
