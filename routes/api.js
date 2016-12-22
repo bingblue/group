@@ -92,11 +92,10 @@ router.all('/git/push', function(req, res) {
   process.execFile('/usr/local/src/group/tools/pull.sh',null,{cwd:'/usr/local/src/group/'},
     function (error,stdout,stderr) {
     if (error !== null) {
-      console.log('exec error: ' + error);
+      res.json('exec error: ' + error);
     }else{
-      console.log('success!');
+      res.json('success!');
     }
   });
-  res.json(req.param('secret'));
 });
 module.exports = router;
