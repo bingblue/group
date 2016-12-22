@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
 var Counters = require('../models/counters');
+var process = require('child_process');
 
 var multer = require('multer');
 var storage = multer.diskStorage({
@@ -85,5 +86,17 @@ router.all('/createID', function(req, res) {
       res.redirect('/');
     }
   });
+});
+router.all('/git/push', function(req, res) {
+  console.log(req);
+  process.execFile('/usr/local/src/group/tools/pull.sh',null,{cwd:'/usr/local/src/group/'},
+    function (error,stdout,stderr) {
+    if (error !== null) {
+      console.log('exec error: ' + error);
+    }else{
+      console.log('success!');
+    }
+  });
+  res.json(req.param('secret'));
 });
 module.exports = router;
