@@ -8,7 +8,8 @@ var User = require('../models/user');
  * 用户注册
  */
 router.post('/add', function(req, res) {
-  var newUser = new User({
+  let invitationCode = req.body.invitationCode;
+  let newUser = new User({
     userName: req.body.userName,
     userPwd: req.body.userPwd,
     nickName: req.body.nickName,
@@ -16,16 +17,41 @@ router.post('/add', function(req, res) {
     userSex : req.body.userSex,
     userEmail : req.body.userEmail
   });
-  newUser.save(function(err,user){
+  User.getByInvitationCode(invitationCode,function(err,user){
     if(err){
       req.flash('error', err);
       return res.redirect('/reg');//注册失败返回主册页
     }else{
-      req.session.user = user;//用户信息存入 session
-      req.flash('success', '注册成功!');
-      res.redirect('/');//注册成功后返回主页
+      if(!user || user.invitationCodeNum<=0){
+        req.flash('error', "邀请码无效!");
+        return res.redirect('/reg');
+      }else{
+        let updateCounters = {
+            userId : user.userId,
+            invitationCode : user.invitationCode,
+            invitationCodeNum : user.invitationCodeNum-1
+        };
+        User.createInvitationCodeByUserId(updateCounters,function(err,user){
+          if(err){
+            req.flash('error', "系统错误!");
+            return res.redirect('/reg');
+          }else{
+            newUser.save(function(err,user){
+              if(err){
+                req.flash('error', err);
+                return res.redirect('/reg');//注册失败返回主册页
+              }else{
+                req.session.user = user;//用户信息存入 session
+                req.flash('success', '注册成功!');
+                res.redirect('/');//注册成功后返回主页
+              }
+            });
+          }
+        });
+      }
     }
   });
+  
 });
 
 /*

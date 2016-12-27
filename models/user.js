@@ -37,8 +37,15 @@ var userSchema = new mongoose.Schema({
     required: '邮箱不能为空!',
     match:[/[_a-zA-Z\d\-\./]+@[_a-zA-Z\d\-]+(\.[_a-zA-Z\d\-]+)+/,'邮箱格式不正确']
   },
+  invitationCode: {
+    type: 'String'
+  },
 
   //系统生成字段
+  invitationCodeNum: {//邀请码使用次数
+    type: Number,
+    default: 10
+  },
   userStatus: {//用户状态 1.正常 2.在线、3离线、0封禁
     type: Number,
     default: 1
@@ -68,6 +75,8 @@ function User(user) {
   this.userPhone = user.userPhone;
   this.userSex = user.userSex;
   this.userEmail = user.userEmail;
+  this.invitationCode = user.invitationCode;
+  this.invitationCodeNum = user.invitationCodeNum;
 };
 
 User.prototype.save = function(callback) {
@@ -138,6 +147,22 @@ User.updateByUserName = function(updateUser, callback) {
     // });
     //findOneAndUpdate 方法返回的是修改前的数据，WTF！
     //已解决：设置options{new:true}
+  });
+};
+User.createInvitationCodeByUserId = function(updateUser, callback) {
+  userModel.findOneAndUpdate({userId: updateUser.userId},{$set:updateUser},{new:true},function (err, user) {
+    if (err) {
+      return callback(err);
+    }
+    callback(null, user);
+  });
+};
+User.getByInvitationCode = function(invitationCode, callback) {
+  userModel.findOne({invitationCode: invitationCode}, function (err, user) {
+    if (err) {
+      return callback(err);
+    }
+    callback(null, user);
   });
 };
 

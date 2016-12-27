@@ -31,7 +31,7 @@ router.all('/isRepeatByName', function (req, res) {
   let userName = req.param('userName');
   User.getByUserName(userName,function(err,user){
     req.json.msg = "可以注册!";
-    req.json.body = {valid:false,userName:userName};
+    req.json.body = {valid:true,userName:userName};
     if(err){
       req.json.code = 901;
       req.json.msg = 'User表读取错误';
