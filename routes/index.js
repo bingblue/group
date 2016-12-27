@@ -1,6 +1,8 @@
-var express = require('express');
-var router = express.Router();
-
+var router = require('express').Router();
+//过滤器
+router.all('*',(req, res, next)=>{
+  next();
+})
 /* GET home page. */
 function checkLogin(req, res, next) {
   if (!req.session.user) {
