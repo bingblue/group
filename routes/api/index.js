@@ -18,39 +18,39 @@ router.all('*',(req, res, next)=>{
       req.json.msg = "权限错误!";
       req.json.body = "您没有权限访问接口,请联系QQ群:206683621(小牧COOL)";
       res.json(req.json);
-    }else{
-      User.getByInvitationCode(invitationCode,function(err,user){
+      return;
+    }
+    User.getByInvitationCode(invitationCode,function(err,user){
+      if(err){
+        req.json.code = 901;
+        req.json.msg = 'User表读取错误';
+        req.json.body = err+"";
+        res.json(req.json);
+        return;
+      }
+      if(!user || user.invitationCodeNum<=0){
+        req.json.code = 1500;
+        req.json.msg = "权限错误!";
+        req.json.body = '邀请码不存在！';
+        res.json(req.json);
+        return;
+      }
+      let updateCounters = {
+          userId : user.userId,
+          invitationCode : user.invitationCode,
+          invitationCodeNum : user.invitationCodeNum-1
+      };
+      User.createInvitationCodeByUserId(updateCounters,function(err,user){
         if(err){
-          req.json.code = 901;
-          req.json.msg = 'User表读取错误';
+          req.json.code = 903;
+          req.json.msg = "Users表读取错误!";
           req.json.body = err+"";
           res.json(req.json);
-        }else{
-          if(!user || user.invitationCodeNum<=0){
-            req.json.code = 1500;
-            req.json.msg = "权限错误!";
-            req.json.body = '邀请码不存在！';
-            res.json(req.json);
-          }else{
-            let updateCounters = {
-                userId : user.userId,
-                invitationCode : user.invitationCode,
-                invitationCodeNum : user.invitationCodeNum-1
-            };
-            User.createInvitationCodeByUserId(updateCounters,function(err,user){
-              if(err){
-                req.json.code = 903;
-                req.json.msg = "Users表读取错误!";
-                req.json.body = err+"";
-                res.json(req.json);
-              }else{
-                next();
-              }
-            });
-          }
+          return;
         }
+        next();
       });
-    }
+    });
   }//判断hidden
 });
 

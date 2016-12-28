@@ -28,10 +28,13 @@ router.all('/createInvitationCode', function(req, res) {
   let updateCounters = {
     userId : req.param('userId'),
     invitationCode : req.param('invitationCode'),
-    invitationCodeNum : 10
+    invitationCodeNum : req.param('invitationCodeNum')
   }
   if(updateCounters.invitationCode == undefined){
     updateCounters.invitationCode = randomString(8);
+  }
+  if(updateCounters.invitationCodeNum == undefined){
+    updateCounters.invitationCodeNum = 10;
   }
   User.createInvitationCodeByUserId(updateCounters,function(err,user){
    if(err){
