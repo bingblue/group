@@ -16,7 +16,7 @@ router.all('*',(req, res, next)=>{
     if(invitationCode == undefined){
       req.json.code = 1500;
       req.json.msg = "权限错误!";
-      req.json.body = "您没有权限创建邀请码,请联系小牧COOL(QQ：895355044)";
+      req.json.body = "您没有权限访问接口,请联系QQ群:206683621(小牧COOL)";
       res.json(req.json);
     }else{
       User.getByInvitationCode(invitationCode,function(err,user){
@@ -29,7 +29,7 @@ router.all('*',(req, res, next)=>{
           if(!user || user.invitationCodeNum<=0){
             req.json.code = 1500;
             req.json.msg = "权限错误!";
-            req.json.body = '验证码不存在！';
+            req.json.body = '邀请码不存在！';
             res.json(req.json);
           }else{
             let updateCounters = {
