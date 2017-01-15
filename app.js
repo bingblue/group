@@ -39,7 +39,7 @@ app.use(session({
   store: new MongoStore({
     //db: settings.db,
     //host: settings.host,
-    //port: settings.port,
+    port: settings.port,
     url:settings.url,
     autoRemove:'native'
   })
