@@ -95,12 +95,8 @@ User.prototype.save = function(callback) {
     }else{
       user.userId = userId;
       var userEntity = new userModel(user);
-
       userEntity.save(function (err, user) {
-        if (err) {
-          return callback(err);
-        }
-        callback(null, user);
+        callback(err, user);
       });
     }
   });
@@ -126,19 +122,18 @@ User.prototype.save = function(callback) {
 
 User.getByUserName = function(userName, callback) {
   userModel.findOne({userName: userName}, function (err, user) {
-    if (err) {
-      return callback(err);
-    }
-    callback(null, user);
+    //为啥要if?
+    //if (err) {
+    //  return callback(err);
+    //}
+    //callback(null, user);
+    callback(err, user);
   });
 };
 
 User.updateByUserName = function(updateUser, callback) {
   userModel.findOneAndUpdate({userName: updateUser.userName},{$set:updateUser},{new:true},function (err, user) {
-    if (err) {
-      return callback(err);
-    }
-    callback(null, user);
+    callback(err, user);
     // userModel.findById(user._id, function (err, user) {
     //   if (err) {
     //     return callback(err);
@@ -150,27 +145,13 @@ User.updateByUserName = function(updateUser, callback) {
   });
 };
 User.createInvitationCodeByUserId = function(updateUser, callback) {
-  console.log(updateUser);
   userModel.findOneAndUpdate({userId: updateUser.userId},{$set:updateUser},{new:true},function (err, user) {
-    if (err) {
-      console.log(2)
-      return callback(err);
-    }
-    if(!user){
-      console.log(1)
-      let err = new Error('用户不存在')
-      return callback(err);
-    }
-    console.log(3)
-    callback(null, user);
+    callback(err, user);
   });
 };
 User.getByInvitationCode = function(invitationCode, callback) {
   userModel.findOne({invitationCode: invitationCode}, function (err, user) {
-    if (err) {
-      return callback(err);
-    }
-    callback(null, user);
+    callback(err, user);
   });
 };
 

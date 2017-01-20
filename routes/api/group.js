@@ -37,7 +37,7 @@ router.all('/createInvitationCode', function(req, res) {
     updateCounters.invitationCodeNum = 10;
   }
   User.createInvitationCodeByUserId(updateCounters,function(err,user){
-   if(err){
+   if(err||!user){
      req.json.code = 903;
      req.json.msg = "Users表读取错误!";
      req.json.body = err+"";
