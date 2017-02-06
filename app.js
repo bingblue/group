@@ -13,6 +13,31 @@ const glob = require('glob');
 
 const app = express();
 
+//引入socket.io
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
+let userList = ['admin'];
+server.listen(808);
+io.on('connection', function (socket) {
+  socket.emit('conn', userList);
+  socket.on('login', function (nickName) {
+    socket.nickName = nickName;
+    socket.userIndex = userList.length;
+    userList.push(nickName);
+    io.sockets.emit('system', socket.nickName,'加入')
+  });
+  socket.on('disconnect', function() {
+    //将断开连接的用户删除
+    userList.splice(socket.userIndex, 1);
+    //通知除自己以外的所有人
+    socket.broadcast.emit('system', socket.nickName,'退出');
+  });
+  socket.on('postMsg', function(msg) {
+    //将消息发送到除自己外的所有用户
+    socket.broadcast.emit('newMsg', socket.nickName, msg);
+  });
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -55,7 +80,6 @@ glob.sync('routes/**/*.js').sort((x,y) =>{
   const route = require("./"+file);
   //生成URL路径,去掉.js,去掉routes
   let urlPath = file.replace(/\.[^.]*$/, '').replace('routes', '').replace('index','');
-  console.log(urlPath+"==="+file);
   app.use(urlPath, route);
 });
 
@@ -90,6 +114,5 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-
 
 module.exports = app;

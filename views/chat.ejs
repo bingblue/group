@@ -1,0 +1,48 @@
+<% include header.ejs %>
+<% include navbar.ejs %>
+<style type="text/css">
+  #content{
+    min-height:500px;
+    background:#f9f9f9;
+    border: 1px solid #eee;
+    margin-bottom: 20px;
+  }
+  #sendTxt{
+    min-height: 80px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #eee;
+  }
+  #sendBtn,#clearBtn{
+    float: right;
+    margin-left: 5px;
+    margin-bottom: 20px;
+  }
+</style>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>这是聊天页面</h1>
+      <div id="content"></div>
+      <textarea id="sendTxt" class="col-md-12"></textarea>
+      <button id="sendBtn" class="btn btn-info">发送</button>
+      <button id="clearBtn" class="btn btn-info">清屏</button>
+    </div>
+  </div>
+</div>
+<script src="/js/socket.io.min.js"></script>
+<script src="/js/muchat.js"></script>
+<script>
+  $(function(){
+    $("ul.nav li").removeClass("active");
+    $("ul.nav>li").eq(1).addClass("active");
+
+    //muchat
+    var muchat = new MuChat({
+      url:'http://localhost:808',
+      nickName:'<%= user.userName %>'
+    });
+  });
+</script>
+<% include footer_all.ejs %>
+
