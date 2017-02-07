@@ -24,13 +24,13 @@ io.on('connection', function (socket) {
     socket.nickName = nickName;
     socket.userIndex = userList.length;
     userList.push(nickName);
-    io.sockets.emit('system', socket.nickName,'加入')
+    io.sockets.emit('system', socket.nickName,'加入',userList.length)
   });
   socket.on('disconnect', function() {
     //将断开连接的用户删除
     userList.splice(socket.userIndex, 1);
     //通知除自己以外的所有人
-    socket.broadcast.emit('system', socket.nickName,'退出');
+    socket.broadcast.emit('system', socket.nickName,'退出',userList.length);
   });
   socket.on('postMsg', function(msg) {
     //将消息发送到除自己外的所有用户
