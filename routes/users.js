@@ -1,7 +1,8 @@
-var express = require('express');
-var crypto = require('crypto');
-var router = express.Router();
-var User = require('../models/user');
+const express = require('express');
+const crypto = require('crypto');
+const router = express.Router();
+const User = require('../models/user');
+const tools = require('../models/tools');
 
 /* GET users listing. */
 /*
@@ -108,7 +109,9 @@ router.post('/login', function(req, res) {
 /*
  * 用户列表
  */
-router.all('/userList', function(req, res) {
+router.get('/userList',tools.checkLogin);
+//router.get('/userList',tools.checkLvl99);
+router.get('/userList', function(req, res) {
   var userName = req.params.userName;
   User.getUserList(function(err,userList){
     if(err){
@@ -125,7 +128,8 @@ router.all('/userList', function(req, res) {
  /*
  * 按用户名查找用户
  */
-router.all('/:userName', function(req, res) {
+router.get('/userList',tools.checkLogin);
+router.get('/:userName', function(req, res) {
   var userName = req.params.userName;
   User.getByUserName(userName,function(err,user){
     if(err){

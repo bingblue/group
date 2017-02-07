@@ -1,24 +1,10 @@
-var router = require('express').Router();
+const router = require('express').Router();
+const tools = require('../models/tools');
 //过滤器
 router.all('*',(req, res, next)=>{
   next();
 })
-/* GET home page. */
-function checkLogin(req, res, next) {
-  if (!req.session.user) {
-    req.flash('error', '未登录!'); 
-    res.redirect('/login');
-  }
-  next();
-}
 
-function checkNotLogin(req, res, next) {
-  if (req.session.user) {
-    req.flash('error', '已登录!');
-    res.redirect('back');//返回之前的页面
-  }
-  next();
-}
 router.get('/', function(req, res) {
   res.render('index', { 
     title: '冰蓝科技 - 首页',
@@ -27,7 +13,7 @@ router.get('/', function(req, res) {
     error: req.flash('error').toString()
   });
 });
-router.get('/reg',checkNotLogin);
+router.get('/reg',tools.checkNotLogin);
 router.get('/reg', function(req, res) {
   res.render('reg', {
     title: '冰蓝科技 - 注册',
@@ -36,7 +22,7 @@ router.get('/reg', function(req, res) {
     error: req.flash('error').toString()
   });
 });
-router.get('/login',checkNotLogin);
+router.get('/login',tools.checkNotLogin);
 router.get('/login', function(req, res) {
   res.render('login', {
     title: '冰蓝科技 - 登录',
@@ -49,14 +35,14 @@ router.get('/login', function(req, res) {
 /*
  * 用户登出
  */
-router.get('/logout',checkLogin);
+router.get('/logout',tools.checkLogin);
 router.get('/logout', function (req, res) {
   req.session.user = null;
   req.flash('success', '登出成功!');
   res.redirect('/');//登出成功后跳转到主页
 });
 
-router.get('/upload',checkLogin);
+router.get('/upload',tools.checkLogin);
 router.get('/upload', function(req, res) {
   res.render('upload', {
     title: '冰蓝科技 - 上传图片',
