@@ -21,8 +21,9 @@ MuChat.prototype = {
       console.log(userList);
     });
     this.socket.emit('login', this.opts.nickName);
-    this.socket.on('system', function (nickName, type, onlineNum){
-      that.onlineNum = onlineNum;
+    this.socket.on('system', function (nickName, type, onlineUser){
+      console.log(onlineUser);
+      that.onlineNum = onlineUser.length;
       that._drawMsg('系统消息',nickName + type + '聊天','red')
     });
     this.socket.on('newMsg', function(nickName, msg) {
@@ -32,6 +33,7 @@ MuChat.prototype = {
     this._clearEvent(that);
   },
   _drawMsg:function(nickName,msg,color){
+    var that = this;
     var date = new Date().toTimeString().substr(0, 8);
     var newMsg = $('<p>'+nickName+'<span> ('+date+') </span>: '+msg+ '</p>');
     newMsg.css({
@@ -42,7 +44,7 @@ MuChat.prototype = {
       color:'#999'
     })
     $(this.opts.content).append(newMsg).scrollTop($(this.opts.content).height());
-    $(this.opts.onlineNum).text(this.onlineNum+'人在线');
+    $(this.opts.onlineNum).text(that.onlineNum+'人在线');
   },
   _sendEvent:function(that){
     var isShiftDown = false;//是否按住shift键
