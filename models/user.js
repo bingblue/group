@@ -155,4 +155,9 @@ User.getByInvitationCode = function(invitationCode, callback) {
   });
 };
 
+User.getUserList = function(callback) {
+  userModel.find(function (err, userList) {
+    callback(err, userList);
+  });
+};
 module.exports = User;

@@ -1,0 +1,47 @@
+<% include header.ejs %>
+<% include navbar.ejs %>
+<div class="container container-mu">
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-hover table-responsive">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>ID</th>
+            <th>用户名</th>
+            <th>昵称</th>
+            <th>手机</th>
+            <th>性别</th>
+            <th>邮箱</th>
+            <th>状态</th>
+            <th>等级</th>
+            <th>VIP</th>
+            <th>注册时间</th>
+            <th>邀请码</th>
+            <th>次数</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% userList.forEach(function(item,index){ %>
+          <tr>
+            <td><%= index+1%></td>
+            <td><%= item.userId%></td>
+            <td><a href="<%= item.userName%>"><%= item.userName%></a></td>
+            <td><%= item.nickName%></td>
+            <td><%= item.userPhone%></td>
+            <td><%= item.userSex%></td>
+            <td><%= item.userEmail%></td>
+            <td><%= item.userStatus%></td>
+            <td><%= item.userLvl%></td>
+            <td><%= item.userVip%></td>
+            <td><%= item.regDate.toLocaleString()%></td>
+            <td><%= item.invitationCode%></td>
+            <td><%= item.invitationCodeNum%></td>
+          </tr>
+          <%})%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<% include footer_all.ejs %>

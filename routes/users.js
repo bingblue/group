@@ -106,6 +106,23 @@ router.post('/login', function(req, res) {
 });
 
 /*
+ * 用户列表
+ */
+router.all('/userList', function(req, res) {
+  var userName = req.params.userName;
+  User.getUserList(function(err,userList){
+    if(err){
+      res.send(err+"");
+    }else{
+      res.render('userList', { 
+        title: '用户列表' ,
+        userList:userList,
+        user: req.session.user
+      });
+    }
+  });
+});
+ /*
  * 按用户名查找用户
  */
 router.all('/:userName', function(req, res) {
@@ -114,7 +131,11 @@ router.all('/:userName', function(req, res) {
     if(err){
       res.send(err+"");
     }else{
-      res.render('update', { title: '用户信息更新' ,user:user});
+      res.render('update', { 
+        title: '用户信息更新' ,
+        user: req.session.user,
+        updateUser:user
+      });
     }
   });
 });

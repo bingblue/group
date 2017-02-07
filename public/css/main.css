@@ -691,3 +691,9 @@ footer .nav-ul a:hover{
     width: 87%;
   }
 }
+
+/* container-mu */
+.container-mu{
+  padding: 30px 0;
+  min-height: 700px;
+}
