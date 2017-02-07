@@ -34,7 +34,7 @@ io.on('connection', function (socket) {
   });
   socket.on('postMsg', function(msg) {
     //将消息发送到除自己外的所有用户
-    socket.broadcast.emit('newMsg', socket.nickName, msg);
+    socket.broadcast.emit('newMsg', socket.nickName, msg,userList.length);
   });
 });
 

@@ -25,7 +25,7 @@ MuChat.prototype = {
       that._drawMsg('系统消息',nickName + type + '聊天',onlineNum,'red')
     });
     this.socket.on('newMsg', function(nickName, msg) {
-      that._drawMsg(nickName, msg);
+      that._drawMsg(nickName, msg,onlineNum);
     });
     this._sendEvent(that);
     this._clearEvent(that);
