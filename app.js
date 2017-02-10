@@ -13,30 +13,60 @@ const glob = require('glob');
 
 const app = express();
 
+
 //引入socket.io
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
-let userList = ['admin'];
 server.listen(808);
+
+let userList = new Map();
 io.on('connection', function (socket) {
-  socket.emit('conn', userList);
-  socket.on('login', function (nickName) {
-    socket.nickName = nickName;
-    socket.userIndex = userList.length;
-    userList.push(nickName);
-    io.sockets.emit('system', socket.nickName,'加入',userList)
+  socket.on('login', function (userData) {
+    socket.join(userData.room);
+    userData.socketId = socket.id;
+    userList.set(userData.userId,userData);
+    socket.userId = userData.userId;
+    let length = io.sockets.adapter.rooms[userData.room].length;
+    io.sockets.in(userData.room).emit('system', userData.nickName,'加入',length);
   });
   socket.on('disconnect', function() {
-    //将断开连接的用户删除
-    userList.splice(socket.userIndex, 1);
-    //通知除自己以外的所有人
-    socket.broadcast.emit('system', socket.nickName,'退出',userList);
+    let userData = userList.get(socket.userId);
+    if(userData){
+      if(io.sockets.adapter.rooms[userData.room]){
+        //通知除自己以外的所有人
+        let length = io.sockets.adapter.rooms[userData.room].length;
+        socket.broadcast.to(userData.room).emit('system', userData.nickName,'退出',length);
+      }
+      //将断开连接的用户删除
+      socket.leave(userData.room);
+      userList.set(socket.userId,null); 
+    }
   });
-  socket.on('postMsg', function(msg) {
+  socket.on('postMsg', function(userData) {
     //将消息发送到除自己外的所有用户
-    socket.broadcast.emit('newMsg', socket.nickName, msg);
+    socket.broadcast.to(userData.room).emit('newMsg', userData.nickName, userData.msg);
   });
 });
+// let userList = [];
+// io.on('connection', function (socket) {
+//   //socket.emit('conn', userList);
+//   socket.on('login', function (nickName) {
+//     socket.nickName = nickName;
+//     socket.userIndex = userList.length;
+//     userList.push(nickName);
+//     io.sockets.emit('system', socket.nickName,'加入',userList)
+//   });
+//   socket.on('disconnect', function() {
+//     //将断开连接的用户删除
+//     userList.splice(socket.userIndex, 1);
+//     //通知除自己以外的所有人
+//     socket.broadcast.emit('system', socket.nickName,'退出',userList);
+//   });
+//   socket.on('postMsg', function(msg) {
+//     //将消息发送到除自己外的所有用户
+//     socket.broadcast.emit('newMsg', socket.nickName, msg);
+//   });
+// });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

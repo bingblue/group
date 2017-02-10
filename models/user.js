@@ -37,8 +37,16 @@ var userSchema = new mongoose.Schema({
     required: '邮箱不能为空!',
     match:[/[_a-zA-Z\d\-\./]+@[_a-zA-Z\d\-]+(\.[_a-zA-Z\d\-]+)+/,'邮箱格式不正确']
   },
+
+  //选填
   invitationCode: {
     type: 'String'
+  },
+  userFriends:{
+    type:[Number]
+  },
+  systemMsg:{
+    type:[]
   },
 
   //系统生成字段
@@ -144,6 +152,13 @@ User.updateByUserName = function(updateUser, callback) {
     //已解决：设置options{new:true}
   });
 };
+User.updateListByUserId = function(updateUserList, callback) {
+  updateUserList.forEach(function(index,updateUser){
+    userModel.findOneAndUpdate({userId: updateUser.userId},{$push:{userFriends:updateUser.userFriends}},{new:true},function (err, user) {
+      callback(err, user);
+    });
+  });
+};
 User.createInvitationCodeByUserId = function(updateUser, callback) {
   userModel.findOneAndUpdate({userId: updateUser.userId},{$set:updateUser},{new:true},function (err, user) {
     callback(err, user);
@@ -158,6 +173,13 @@ User.getByInvitationCode = function(invitationCode, callback) {
 User.getUserList = function(callback) {
   userModel.find(function (err, userList) {
     callback(err, userList);
+  });
+};
+
+User.getLikeNickName = function(nickName,callback) {
+  let reg = new RegExp(nickName+'.*', 'i');
+  userModel.find({nickName: {$regex : reg}},function (err, user) {
+    callback(err, user);
   });
 };
 module.exports = User;

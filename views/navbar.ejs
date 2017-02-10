@@ -13,7 +13,7 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="/"><i class="fa fa-home"></i> 首页 <span class="sr-only">(current)</span></a></li>
         <li class="dropdown">
-          <a href="/chat"><i class="fa fa-comments"></i> 群聊 </a>
+          <a href="/group"><i class="fa fa-comments"></i> 群聊 </a>
         </li>
         <% if(user){%>
           <li>
@@ -52,6 +52,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img class="navbar-brand-img img-circle" alt="username" src="/img/user-avata.jpg"> <%= user.nickName%>  <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#"><i class="fa fa-user"></i>&nbsp;&nbsp;个人资料</a></li>
+            <li><a href="/my/friend"><i class="fa fa-user"></i>&nbsp;&nbsp;我的好友</a></li>
             <li><a href="#"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;账户余额</a></li>
             <li><a href="#"><i class="fa fa-cog fa-spin"></i>&nbsp;&nbsp;修改密码</a></li>
             <li role="separator" class="divider"></li>
@@ -73,3 +74,35 @@
     </div>
   </div>
 </nav>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="  ">好友请求</h4>
+      </div>
+      <div class="modal-body">您有新的好友请求</div>
+      <div class="modal-footer">
+        <a href="/my/system" class="btn btn-default">查看</a>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal -->
+</div>
+<script type="text/javascript">
+  $(function(){
+    //接收系统消息
+    // setInterval(function(){
+    setTimeout(function(){
+      $.ajax({
+        type: 'POST',
+        url: '/my/system',
+        data: {systemTo:<%=user.userId%>},
+        success: function(data){
+          if(data.body.length>0){
+            $('#myModal').modal();
+          }
+        }
+      });
+    },30000);
+  })
+</script>

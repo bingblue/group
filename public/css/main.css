@@ -697,3 +697,68 @@ footer .nav-ul a:hover{
   padding: 30px 0;
   min-height: 700px;
 }
+
+
+
+/* 聊天类 */
+#content{
+  min-height:500px;
+  height:500px;
+  background:#f9f9f9;
+  border: 1px solid #eee;
+  margin-bottom: 20px;
+  overflow: auto;
+}
+#sendTxt{
+  min-height: 80px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  border: 1px solid #eee;
+}
+#sendBtn,#clearBtn{
+  float: right;
+  margin-left: 5px;
+  margin-bottom: 20px;
+}
+#onlineNum{
+  float: right;
+  font-size: 18px;
+  line-height: 39px;
+}
+.groupList{
+  list-style: none;
+}
+.groupList li{
+  padding: 10px 5px;
+}
+.groupList li a{
+  display: inline-block;
+  width: 100%;
+  text-decoration: none;
+}
+.groupList li span{
+  float: left;
+}
+.groupList li img{
+  float: left;
+  border-radius: 50%;
+  max-width: 80px;
+}
+.groupList li .name{
+  font-size: 14px;
+  line-height: 30px;
+  display: block;
+}
+.groupList li .name small{
+  color: #666;
+  font-size: 12px;
+  display: block;
+}
+.groupList li:hover,.groupList li:hover span{
+  color: #0099FF;
+  background: #eee;
+}
+.friendList li:hover,.friendList li:hover span{
+  color: #000;
+  background: #fff;
+}

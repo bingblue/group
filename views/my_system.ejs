@@ -1,0 +1,67 @@
+<% include header.ejs %>
+<% include navbar.ejs %>
+<div class="container container-mu">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>我的系统消息</h1>
+
+      <ul class="groupList">
+        <% systemList.forEach(function(item,index){ %>
+        <li>
+          <span><%=item.systemFromNickName%><%=item.systemInfo%></span>
+          <a id="ty" href="javascript:;" data-id="<%=item._id%>" data-from="<%=item.systemFrom%>" class="btn btn-info" style="width: 100px">同意</a>
+          <a id="jj" href="javascript:;" data-id="<%=item._id%>" class="btn btn-danger" style="width: 100px">拒绝</a>
+        </li>
+        <%})%>
+      </ul>
+    </div>
+  </div>
+</div>
+<script src="/js/socket.io.min.js"></script>
+<script src="/js/mugroupchat.js"></script>
+<script>
+  $(function(){
+    $("ul.nav li").removeClass("active");
+    $("ul.nav>li").eq(1).addClass("active");
+
+    //mugroupchat
+    //var mugroupchat = new MuGroupChat({
+    //  //url:'http://www.bingblue.com:808',
+    //  nickName:'<%= user.nickName %>'
+    //});
+    $("#ty").click(function(){
+      var systemId = $(this).attr('data-id');
+      var fromId = $(this).attr('data-from');
+      var postData = {
+        to:<%=user.userId%>,
+        systemId:systemId,
+        from:fromId
+      }
+      $.ajax({
+        type: 'POST',
+        url: '/my/agreeFriend',
+        data: postData,
+        success: function(data){
+          alert(data.msg);
+        }
+      });
+    })
+    $("#jj").click(function(){
+      var systemId = $(this).attr('data-id');
+      var postData = {
+        id:systemId
+      }
+      $.ajax({
+        type: 'POST',
+        url: '/my/refuseFriend',
+        data: postData,
+        success: function(data){
+          alert(data.msg);
+          location.reload(true);
+        }
+      });
+    })
+  });
+</script>
+<% include footer_all.ejs %>
+

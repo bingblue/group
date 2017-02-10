@@ -1,0 +1,36 @@
+<% include header.ejs %>
+<% include navbar.ejs %>
+<div class="container container-mu">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>这是群列表页面<!--<span id="onlineNum">0人在线</span>--></h1>
+      <ul class="groupList">
+        <% groupList.forEach(function(item,index){ %>
+        <li>
+          <a href="group/chat?room=<%=item.groupId%>">
+            <span><%=index+1%></span>
+            <img src="/img/logo-b-square.png">
+            <span class="name"><%=item.groupName%><small><%=item.groupIntro%></small></span>
+          </a>
+        </li>
+        <%})%>
+      </ul>
+    </div>
+  </div>
+</div>
+<script src="/js/socket.io.min.js"></script>
+<script src="/js/mugroupchat.js"></script>
+<script>
+  $(function(){
+    $("ul.nav li").removeClass("active");
+    $("ul.nav>li").eq(1).addClass("active");
+
+    //mugroupchat
+    //var mugroupchat = new MuGroupChat({
+    //  //url:'http://www.bingblue.com:808',
+    //  nickName:'<%= user.nickName %>'
+    //});
+  });
+</script>
+<% include footer_all.ejs %>
+
