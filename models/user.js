@@ -153,7 +153,7 @@ User.updateByUserName = function(updateUser, callback) {
   });
 };
 User.updateByUserId = function(updateUser, callback) {
-  userModel.findOneAndUpdate({userId: updateUser.userId},{userFriends:{$push:updateUser.userFriends}},{new:true},function (err, user) {
+  userModel.findOneAndUpdate({userId: updateUser.userId},{$push:{userFriends:updateUser.userFriends}},{new:true},function (err, user) {
     callback(err, user);
   });
 };

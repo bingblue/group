@@ -9,8 +9,8 @@
         <% systemList.forEach(function(item,index){ %>
         <li>
           <span><%=item.systemFromNickName%><%=item.systemInfo%></span>
-          <a id="ty" href="javascript:;" data-id="<%=item._id%>" data-from="<%=item.systemFrom%>" class="btn btn-info" style="width: 100px">同意</a>
-          <a id="jj" href="javascript:;" data-id="<%=item._id%>" class="btn btn-danger" style="width: 100px">拒绝</a>
+          <a href="javascript:;" data-id="<%=item._id%>" data-from="<%=item.systemFrom%>" class="btn btn-info ty" style="width: 100px">同意</a>
+          <a href="javascript:;" data-id="<%=item._id%>" class="btn btn-danger jj" style="width: 100px">拒绝</a>
         </li>
         <%})%>
       </ul>
@@ -29,7 +29,7 @@
     //  //url:'http://www.bingblue.com:808',
     //  nickName:'<%= user.nickName %>'
     //});
-    $("#ty").click(function(){
+    $(".ty").click(function(){
       var systemId = $(this).attr('data-id');
       var fromId = $(this).attr('data-from');
       var postData = {
@@ -47,7 +47,7 @@
         }
       });
     })
-    $("#jj").click(function(){
+    $(".jj").click(function(){
       var systemId = $(this).attr('data-id');
       var postData = {
         id:systemId

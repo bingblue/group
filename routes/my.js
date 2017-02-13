@@ -123,12 +123,12 @@ router.post('/agreeFriend', (req, res)=>{
     systemStatus:4
   }
   let userFrom = {
-    userId :from,
-    userFriends:to
+    userId :from*1,
+    userFriends:to*1
   };
   let userTo = {
-    userId : to,
-    userFriends:from
+    userId : to*1,
+    userFriends:from*1
   };
 
   System.updateById(sys,function(err,system){
