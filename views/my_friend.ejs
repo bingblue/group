@@ -10,10 +10,10 @@
       <ul class="groupList">
         <% userFriends.forEach(function(item,index){ %>
         <li>
-          <a href="group/chat?room=<%=item.groupId%>">
+          <a href="group/group?room=<%=item.groupId%>">
             <span><%=index+1%></span>
             <img src="/img/logo-b-square.png">
-            <span class="name"><%=item.groupName%><small><%=item.groupIntro%></small></span>
+            <span class="name"><%=item.userName%><small><%=item.userId%></small></span>
           </a>
         </li>
         <%})%>

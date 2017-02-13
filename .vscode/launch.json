@@ -8,8 +8,17 @@
       "type": "node",
       "request": "launch",
       "name": "group",
-      "program": "${workspaceRoot}\\bin\\www",
-      "cwd": "${workspaceRoot}"
+      //"program": "${workspaceRoot}\\bin\\www",
+      "cwd": "${workspaceRoot}",
+      "restart":true,
+      "runtimeExecutable": "npm",
+      "windows": {
+          "runtimeExecutable": "npm.cmd"
+      },
+      "runtimeArgs": [
+          "run-script", "start"
+      ],
+      "port": 5858
     }
   ]
 }

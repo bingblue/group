@@ -37,12 +37,14 @@
         systemId:systemId,
         from:fromId
       }
+      alert(postData);
       $.ajax({
         type: 'POST',
         url: '/my/agreeFriend',
         data: postData,
         success: function(data){
           alert(data.msg);
+          location.reload(true);
         }
       });
     })

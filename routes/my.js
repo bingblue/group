@@ -12,11 +12,30 @@ router.all('*',(req, res, next)=>{
 //好友列表
 router.get('/friend',tools.checkLogin);
 router.get('/friend', (req, res)=>{
-  res.render('my_friend', { 
-    title: '冰蓝科技 - 我的好友',
-    user: req.session.user,
-    userFriends:req.session.user.userFriends
-  });
+  User.getByUserName(req.session.user.userName,(err,user)=>{
+    if(err){
+      req.flash('error', "系统错误!");
+      return res.redirect('/index');
+    }else{
+      req.session.user = user;
+      //var userIdList = [];
+      //user.userFriends.forEach(function(item,index){
+      //  userIdList.push({userId:item});
+      //});
+      //console.log(userIdList)
+      User.getUserListByUserId(user.userFriends,(err,userList)=>{
+        if(err){
+          req.flash('error', "系统错误:"+err);
+          return res.redirect('/');
+        }
+        res.render('my_friend', { 
+          title: '冰蓝科技 - 我的好友',
+          user: req.session.user,
+          userFriends:userList
+        });
+      })
+    }
+  })
 });
 
 //查询好友
@@ -98,40 +117,50 @@ router.post('/agreeFriend',tools.checkLogin);
 router.post('/agreeFriend', (req, res)=>{
   let to = req.param('to');
   let from = req.param('from');
+  let json = {};
   let sys = {
-    _id:req.param('id'),
+    _id:req.param('systemId'),
     systemStatus:4
   }
-  let json = {};
-  let updateList = [{
+  let userFrom = {
+    userId :from,
+    userFriends:to
+  };
+  let userTo = {
     userId : to,
     userFriends:from
-  },{
-    userId : from,
-    userFriends:to
-  }];
+  };
 
-  //System.updateById(sys,function(err,system){
-  //  if(err){
-  //    json.code = 906;
-  //    json.msg = "添加好友失败！";
-  //    json.body = "请重试:"+err;
-  //    res.json(json);
-  //  }else{
-  //    User.updateListByUserId(updateList,function(err,user){
-  //      if(err){
-  //        json.code = 906;
-  //        json.msg = "添加好友失败";
-  //        json.body = "请重试:"+err;
-  //      }else{
-  //        json.code = 200;
-  //        json.msg = "添加好友成功！";
-  //        json.body = "success!";
-  //      }
-  //      res.json(json);
-  //    });
-  //  }
-  //});
+  System.updateById(sys,function(err,system){
+   if(err){
+     json.code = 906;
+     json.msg = "添加好友失败！";
+     json.body = "请重试:"+err;
+     res.json(json);
+   }else{
+    User.updateByUserId(userFrom,function(err,user){
+      if(err){
+        json.code = 906;
+        json.msg = "添加好友失败";
+        json.body = "请重试:"+err;
+        res.json(json);
+      }else{
+        User.updateByUserId(userTo,function(err,user){
+          if(err){
+            json.code = 906;
+            json.msg = "添加好友失败";
+            json.body = "请重试:"+err;
+          }else{
+            json.code = 200;
+            json.msg = "添加好友成功！";
+            json.body = "success!";
+          }
+          res.json(json);
+        })
+      }
+     });
+   }
+  });
 });
 //拒绝好友请求
 router.post('/refuseFriend',tools.checkLogin);

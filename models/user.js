@@ -152,12 +152,18 @@ User.updateByUserName = function(updateUser, callback) {
     //已解决：设置options{new:true}
   });
 };
-User.updateListByUserId = function(updateUserList, callback) {
-  updateUserList.forEach(function(index,updateUser){
-    userModel.findOneAndUpdate({userId: updateUser.userId},{$push:{userFriends:updateUser.userFriends}},{new:true},function (err, user) {
-      callback(err, user);
-    });
+User.updateByUserId = function(updateUser, callback) {
+  userModel.findOneAndUpdate({userId: updateUser.userId},{$set:updateUser},{new:true},function (err, user) {
+    callback(err, user);
   });
+};
+User.updateListByUserId = function(updateUserList, callback) {
+  console.log('此方法未完善!');
+  //updateUserList.forEach(function(index,updateUser){
+  //  userModel.findOneAndUpdate({userId: updateUser.userId},{$push:{userFriends:updateUser.userFriends}},{new:true},function (err, user) {
+  //    callback(err, user);
+  //  });
+  //});
 };
 User.createInvitationCodeByUserId = function(updateUser, callback) {
   userModel.findOneAndUpdate({userId: updateUser.userId},{$set:updateUser},{new:true},function (err, user) {
@@ -172,6 +178,12 @@ User.getByInvitationCode = function(invitationCode, callback) {
 
 User.getUserList = function(callback) {
   userModel.find(function (err, userList) {
+    callback(err, userList);
+  });
+};
+
+User.getUserListByUserId = function(userIdList,callback) {
+  userModel.find({userId:{$in:userIdList}},function (err, userList) {
     callback(err, userList);
   });
 };
