@@ -61,6 +61,25 @@
           </ul>
         </li>
       </ul>
+      
+      <script type="text/javascript">
+        $(function(){
+          //接收系统消息
+          // setInterval(function(){
+          setTimeout(function(){
+            $.ajax({
+              type: 'POST',
+              url: '/my/system',
+              data: {systemTo:<%=user.userId%>},
+              success: function(data){
+                if(data.body.length>0){
+                  $('#myModal').modal();
+                }
+              }
+            });
+          },30000);
+        })
+      </script>
       <% }else{ %>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -88,21 +107,3 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal -->
 </div>
-<script type="text/javascript">
-  $(function(){
-    //接收系统消息
-    // setInterval(function(){
-    setTimeout(function(){
-      $.ajax({
-        type: 'POST',
-        url: '/my/system',
-        data: {systemTo:<%=user.userId%>},
-        success: function(data){
-          if(data.body.length>0){
-            $('#myModal').modal();
-          }
-        }
-      });
-    },30000);
-  })
-</script>
