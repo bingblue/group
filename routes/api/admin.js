@@ -69,5 +69,25 @@ router.all('/createInvitationCode', function(req, res) {
    res.json(req.json);
   });
 });
+/*
+ * 初始化用户好友
+ */
+router.all('/initFriends', function(req, res) {
+  let newUser = {
+    userName: req.param('userName'),
+    userFriends: [100001]
+  };
+  User.updateByUserName(newUser,function(err,user){
+    if(err){
+      req.json.code = 902;
+      req.json.msg = "初始化失败!";
+      req.json.body = err+"";
+    }else{
+      req.json.msg = "初始化成功!";
+      req.json.body = user;
+    }
+    res.json(req.json);
+  });
+});
 
 module.exports = router;
