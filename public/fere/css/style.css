@@ -38,10 +38,10 @@
   position: relative; 
 }
 
-/*goto.html 开始*/
-.xc-goto .wrap{
-  background: url(../img/goto-bg.png) no-repeat ;
-  background-size:cover;
+.xc-goto .img-bg{
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
 }
 .xc-goto .main{
   width: 94%;
