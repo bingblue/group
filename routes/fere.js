@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const path = require('path');
 
 //过滤器
 router.all('*',(req, res, next)=>{
@@ -8,7 +7,7 @@ router.all('*',(req, res, next)=>{
 
 //
 router.get('/', (req, res)=>{
-  res.sendfile(path.join(__dirname, '../views/fere/goto.html'));
+  res.render('fere/goto');
   //res.sendfile('views/fere/goto.html');
 });
 
