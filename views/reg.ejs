@@ -14,6 +14,14 @@
    <div class="row">
      <div class="col-md-6 col-md-offset-3 animated bounceInLeft">
       <form id="sign-form" class="form-horizontal wap" action="/users/add" method="post">
+        <% if (error) { %>
+          <div class="alert alert-danger in fade" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <%= error %>
+          </div>
+        <% } %>
         <div class="form-group">
           <div class="input-group">
             <span class="fa fa-user input-group-addon"></span>
@@ -54,6 +62,18 @@
             <input type="email" class="form-control" id="userEmail" name="userEmail" placeholder="请输入邮箱">
           </div>
         </div>
+        <div class="form-group">
+          <div class="input-group">
+            <span class="fa fa-gift input-group-addon"></span>
+            <input type="text" class="form-control" id="invitationCode" name="invitationCode" placeholder="请输入邀请码">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <span class="fa fa-check-square-o input-group-addon"></span>
+            <input type="number" class="form-control" id="captcha" name="captcha" placeholder="请输入邀请码">
+          </div>
+        </div>
         <!-- <div class="form-group">
           <div class="col-sm-12"><i class="fa fa-puzzle-piece"></i> 拖动验证：</div>
         </div>
@@ -85,7 +105,7 @@
   </div>
 </div>
 <% include footer.ejs %>
-<script src="../js/formValidation.min.js"></script>
+<script src="../js/formValidation.js"></script>
 <script src="../js/fd-bootstrap.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -98,7 +118,10 @@ $(function(){
   function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
-  $('#captchaOperation').html([randomNumber(1, 100), '+', randomNumber(1, 200), '='].join(' '));
+  var numOne = randomNumber(1, 100);
+  var numTwo = randomNumber(1, 200);
+  $('#captcha').prop('placeholder',[numOne, '+', numTwo, '=',"请输入运算结果"].join(' '));
+  //$('#captchaOperation').html([randomNumber(1, 100), '+', randomNumber(1, 200), '='].join(' '));
   $('#sign-form').formValidation({
     err: {
       container: 'tooltip'
@@ -128,9 +151,9 @@ $(function(){
             message: '用户名只能输入数字或字符a-z,且不能全为数字！'
           },
           remote: {
-            url: '/api/isRepeatByName',
+            url: '/api/user/isRepeatByName?hidden=753951',
             type: 'POST',
-            validKey: 'valid',
+            validKey: ['body','valid'],
             dataType:"json",
             delay: 1000,
             message:"用户名已注册！"
@@ -161,6 +184,13 @@ $(function(){
           },
           emailAddress: {
             message: '邮箱地址不正确！'
+          }
+        }
+      },
+      invitationCode: {
+        validators: {
+          notEmpty: {
+            message: '邀请码不能为空！'
           }
         }
       },
@@ -204,7 +234,8 @@ $(function(){
           callback: {
           message: '小学数学没学好吗？',
             callback: function(value, validator, $field) {
-              var items = $('#captchaOperation').html().split(' '), sum = parseInt(items[0]) + parseInt(items[2]);
+              //var items = $('#captchaOperation').html().split(' '), sum = parseInt(items[0]) + parseInt(items[2]);
+              var sum = numOne+numTwo;
               return value == sum;
             }
           }

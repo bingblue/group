@@ -7040,10 +7040,18 @@ if (typeof jQuery === 'undefined') {
 
                 xhr
                     .success(function(response) {
-                        var response = eval("("+response+")");
-                        response.valid = (response[validKey] === true || response[validKey] === 'true')
+                        //var response = eval("("+response+")");
+                        var validKeyValue = response;
+                        if($.isArray(validKey)){
+                            $.each(validKey,function(index,item){
+                                validKeyValue = validKeyValue[item]
+                            })
+                        }else{
+                            validKeyValue = response[validKey];
+                        }
+                        response.valid = (validKeyValue === true || validKeyValue === 'true')
                                         ? true
-                                        : (response[validKey] === false || response[validKey] === 'false' ? false : null);
+                                        : (validKeyValue === false || validKeyValue === 'false' ? false : null);
                         dfd.resolve($field, 'remote', response);
                     })
                     .error(function(response) {
