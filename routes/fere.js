@@ -7,7 +7,7 @@ router.all('*',(req, res, next)=>{
 
 //
 router.get('/', (req, res)=>{
-  res.sendfile('views/fere/goto.html');
+  res.sendfile('views/fere/home.html');
 });
 
 
