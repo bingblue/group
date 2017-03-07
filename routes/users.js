@@ -1,7 +1,8 @@
-var express = require('express');
-var crypto = require('crypto');
-var router = express.Router();
-var User = require('../models/user');
+const express = require('express');
+const crypto = require('crypto');
+const router = express.Router();
+const User = require('../models/user');
+const tools = require('../models/tools');
 
 /* GET users listing. */
 /*
@@ -106,15 +107,38 @@ router.post('/login', function(req, res) {
 });
 
 /*
+ * 用户列表
+ */
+router.get('/userList',tools.checkAdmin);
+router.get('/userList', function(req, res) {
+  var userName = req.params.userName;
+  User.getUserList(function(err,userList){
+    if(err){
+      res.send(err+"");
+    }else{
+      res.render('user_list', { 
+        title: '用户列表' ,
+        userList:userList,
+        user: req.session.user
+      });
+    }
+  });
+});
+ /*
  * 按用户名查找用户
  */
-router.all('/:userName', function(req, res) {
+router.get('/:userName',tools.checkLogin);
+router.get('/:userName', function(req, res) {
   var userName = req.params.userName;
   User.getByUserName(userName,function(err,user){
     if(err){
       res.send(err+"");
     }else{
-      res.render('update', { title: '用户信息更新' ,user:user});
+      res.render('update', { 
+        title: '用户信息更新' ,
+        user: req.session.user,
+        updateUser:user
+      });
     }
   });
 });

@@ -37,4 +37,13 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  $(function(){
+    $('body').keydown(function(e){
+      if(e && e.keyCode==13){ 
+        $('.login-form').submit();
+      }
+    });
+  });
+</script>
 <% include footer.ejs %>

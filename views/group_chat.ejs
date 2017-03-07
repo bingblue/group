@@ -1,0 +1,31 @@
+<% include header.ejs %>
+<% include navbar.ejs %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>这是聊天页面<span id="onlineNum">0人在线</span></h1>
+      <div id="content"></div>
+      <textarea id="sendTxt" class="col-md-12"></textarea>
+      <button id="sendBtn" class="btn btn-info">发送</button>
+      <button id="clearBtn" class="btn btn-info">清屏</button>
+    </div>
+  </div>
+</div>
+<script src="/js/socket.io.min.js"></script>
+<script src="/js/mugroupchat.js"></script>
+<script>
+  $(function(){
+    $("ul.nav li").removeClass("active");
+    $("ul.nav>li").eq(1).addClass("active");
+
+    //mugroupchat
+    var mugroupchat = new MuGroupChat({
+      //url:'http://www.bingblue.com:808',
+      nickName:'<%= user.nickName %>',
+      room:<%= groupId %>,
+      userId:<%= user.userId %>
+    });
+  });
+</script>
+<% include footer_all.ejs %>
+

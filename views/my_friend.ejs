@@ -1,0 +1,78 @@
+<% include header.ejs %>
+<% include navbar.ejs %>
+<div class="container container-mu">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>我的好友<span id="onlineNum"><input type="text" id='nickName' placeholder="按昵称查找好友" class="from-control">　<input id="searchFriend" type="button" value="查找" class="btn btn-info"></span></h1>
+      <ul class="groupList friendList">
+       
+      </ul>
+      <ul class="groupList">
+        <% userFriends.forEach(function(item,index){ %>
+        <li>
+          <a href="group/group?room=<%=item.groupId%>">
+            <span><%=index+1%></span>
+            <img src="/img/logo-b-square.png">
+            <span class="name"><%=item.userName%><small><%=item.userId%></small></span>
+          </a>
+        </li>
+        <%})%>
+      </ul>
+    </div>
+  </div>
+</div>
+<script src="/js/socket.io.min.js"></script>
+<script src="/js/mugroupchat.js"></script>
+<script>
+  $(function(){
+    $("ul.nav li").removeClass("active");
+    $("ul.nav>li").eq(1).addClass("active");
+
+    //mugroupchat
+    //var mugroupchat = new MuGroupChat({
+    //  //url:'http://www.bingblue.com:808',
+    //  nickName:'<%= user.nickName %>'
+    //});
+
+    //查找好友
+    $("#searchFriend").click(function(){
+      $.ajax({
+        type: 'POST',
+        url: '/my/searchFriend',
+        data: {nickName:$("#nickName").val()},
+        success: function(data){
+          $('.friendList').html('');
+          if(data.body.length > 0){
+            $.each(data.body,function(index,item){
+              $('<li><span>'+(index+1)+'</span><img src="/img/logo-b-square.png"><span class="name">'+item.nickName+'<a class="addFriend" href="javascript:;" data-id="'+item.userId+'" data-nickName="'+item.nickName+'">添加好友</a></span></li>').appendTo($(".friendList"));
+            });
+          }else{
+            $('.friendList').html('<h1>查无此人!</h1>');
+          }
+        }
+      });
+    });
+
+    $(".friendList").on("click",'.addFriend',function(){
+      var userId = $(this).attr('data-id');
+      var nickName = $(this).attr('data-nickName');
+      var postData = {
+        from:<%=user.userId%>,
+        to:userId,
+        fromNickName:'<%=user.nickName%>',
+        toNickName:nickName
+      }
+      console.log(postData)
+      $.ajax({
+        type: 'POST',
+        url: '/my/friendReq',
+        data: postData,
+        success: function(data){
+          alert(data.msg);
+        }
+      });
+    })
+  });
+</script>
+<% include footer_all.ejs %>
+

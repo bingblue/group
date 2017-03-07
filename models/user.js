@@ -37,8 +37,16 @@ var userSchema = new mongoose.Schema({
     required: '邮箱不能为空!',
     match:[/[_a-zA-Z\d\-\./]+@[_a-zA-Z\d\-]+(\.[_a-zA-Z\d\-]+)+/,'邮箱格式不正确']
   },
+
+  //选填
   invitationCode: {
     type: 'String'
+  },
+  userFriends:{
+    type:[Number]
+  },
+  systemMsg:{
+    type:[]
   },
 
   //系统生成字段
@@ -95,12 +103,8 @@ User.prototype.save = function(callback) {
     }else{
       user.userId = userId;
       var userEntity = new userModel(user);
-
       userEntity.save(function (err, user) {
-        if (err) {
-          return callback(err);
-        }
-        callback(null, user);
+        callback(err, user);
       });
     }
   });
@@ -126,19 +130,18 @@ User.prototype.save = function(callback) {
 
 User.getByUserName = function(userName, callback) {
   userModel.findOne({userName: userName}, function (err, user) {
-    if (err) {
-      return callback(err);
-    }
-    callback(null, user);
+    //为啥要if?
+    //if (err) {
+    //  return callback(err);
+    //}
+    //callback(null, user);
+    callback(err, user);
   });
 };
 
 User.updateByUserName = function(updateUser, callback) {
   userModel.findOneAndUpdate({userName: updateUser.userName},{$set:updateUser},{new:true},function (err, user) {
-    if (err) {
-      return callback(err);
-    }
-    callback(null, user);
+    callback(err, user);
     // userModel.findById(user._id, function (err, user) {
     //   if (err) {
     //     return callback(err);
@@ -149,21 +152,46 @@ User.updateByUserName = function(updateUser, callback) {
     //已解决：设置options{new:true}
   });
 };
+User.updateByUserId = function(updateUser, callback) {
+  userModel.findOneAndUpdate({userId: updateUser.userId},{$push:{userFriends:updateUser.userFriends}},{new:true},function (err, user) {
+    callback(err, user);
+  });
+};
+User.updateListByUserId = function(updateUserList, callback) {
+  console.log('此方法未完善!');
+  //updateUserList.forEach(function(index,updateUser){
+  //  userModel.findOneAndUpdate({userId: updateUser.userId},{$push:{userFriends:updateUser.userFriends}},{new:true},function (err, user) {
+  //    callback(err, user);
+  //  });
+  //});
+};
 User.createInvitationCodeByUserId = function(updateUser, callback) {
   userModel.findOneAndUpdate({userId: updateUser.userId},{$set:updateUser},{new:true},function (err, user) {
-    if (err) {
-      return callback(err);
-    }
-    callback(null, user);
+    callback(err, user);
   });
 };
 User.getByInvitationCode = function(invitationCode, callback) {
   userModel.findOne({invitationCode: invitationCode}, function (err, user) {
-    if (err) {
-      return callback(err);
-    }
-    callback(null, user);
+    callback(err, user);
   });
 };
 
+User.getUserList = function(callback) {
+  userModel.find(function (err, userList) {
+    callback(err, userList);
+  });
+};
+
+User.getUserListByUserId = function(userIdList,callback) {
+  userModel.find({userId:{$in:userIdList}},function (err, userList) {
+    callback(err, userList);
+  });
+};
+
+User.getLikeNickName = function(nickName,callback) {
+  let reg = new RegExp(nickName+'.*', 'i');
+  userModel.find({nickName: {$regex : reg}},function (err, user) {
+    callback(err, user);
+  });
+};
 module.exports = User;

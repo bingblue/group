@@ -1,0 +1,28 @@
+<% include header.ejs %>
+<% include navbar.ejs %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <% if (success) { %>
+        <div style="margin-top:10px;" class="alert alert-success in fade" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <%= success %>
+        </div>
+      <% } else if(error){%>
+        <div style="margin-top:10px;" class="alert alert-danger in fade" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <%= error %>
+        </div>
+      <% } %>
+      <h1><%= title %></h1>
+      <p>Welcome to <%= title %></p>
+      这是主页。
+      <div style="min-height:400px;width:100%;background:#fff;"></div>
+    </div>
+  </div>
+</div>
+<% include footer_all.ejs %>
