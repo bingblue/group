@@ -34,8 +34,12 @@ $(function() {
 	$(".btn-menu").click(function(){
 		$(".home").addClass('menu-on');
 	});
-	$(".home .btn-close").click(function(){
+	$(".home .btn-close,.mask-home").click(function(){
 		$(".home").removeClass('menu-on');
+	});
+	//注册步骤
+	$('#reg').click(function(){
+		location.href = 'reg1.html';
 	});
 	// 完善信息 
 	$("#headbtn").click(function(event) {
@@ -75,11 +79,37 @@ $(function() {
 			$(".brand .brand-list-group ul>li").removeClass('active').eq($num).addClass('active');
 		},3000)
 	})();
-
+	// sreach tag
+	(function(){
+		var $num = 0;
+		var $brand = $(".brand-2 .brand-list-group>a");
+		var $length = $brand.length;
+		setInterval(function(){
+			$num ++;
+			if ( $num>=$length ) {
+				$num = 0;
+			}
+			$brand.eq($num).fadeIn("slow").addClass('active').siblings("a").fadeOut(0).removeClass('active');
+			$(".brand-2 .brand-list-group ul>li").removeClass('active').eq($num).addClass('active');
+		},3000)
+	})();
+	// 消息关闭
+	$(".pre-message .close").click(function(event) {
+		$(this).parents(".mark").fadeOut('slow');
+	});
 	//返回事件
 	$('.return').click(function(){
 		history.go(-1);
 	});
+	// search 整体导航
+	(function(){
+		$(".xc-sreach .sreach-banner>a").each(function(index) {
+			$(this).click(function(event) {
+				$(this).addClass('active').siblings().removeClass('active');
+				$(".xc-sreach .sreach-content>div").eq(index).addClass('active').siblings().removeClass('active');
+			});
+		});
+	})();
 });
 
 function bannerclick() {

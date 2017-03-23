@@ -7,7 +7,7 @@ router.all('*',(req, res, next)=>{
 
 //
 router.get('/', (req, res)=>{
-  res.sendfile('views/fere/home.html');
+  res.sendfile('views/fere/start.html');
 });
 //
 router.get('/chat.html', (req, res)=>{
@@ -78,36 +78,28 @@ router.get('/share-up.html', (req, res)=>{
   res.sendfile('views/fere/share-up.html');
 });
 //
-router.get('/Sign-in.html', (req, res)=>{
-  res.sendfile('views/fere/Sign-in.html');
+router.get('/login.html', (req, res)=>{
+  res.sendfile('views/fere/login.html');
 });
 //
-router.get('/Sign-in2.html', (req, res)=>{
-  res.sendfile('views/fere/Sign-in2.html');
+router.get('/reg.html', (req, res)=>{
+  res.sendfile('views/fere/reg.html');
 });
 //
-router.get('/Sign-in3.html', (req, res)=>{
-  res.sendfile('views/fere/Sign-in3.html');
+router.get('/reg1.html', (req, res)=>{
+  res.sendfile('views/fere/reg1.html');
 });
 //
-router.get('/Sign-in4.html', (req, res)=>{
-  res.sendfile('views/fere/Sign-in4.html');
+router.get('/reg2.html', (req, res)=>{
+  res.sendfile('views/fere/reg2.html');
 });
 //
-router.get('/Sign-in5.html', (req, res)=>{
-  res.sendfile('views/fere/Sign-in5.html');
+router.get('/reg3.html', (req, res)=>{
+  res.sendfile('views/fere/reg3.html');
 });
 //
 router.get('/start.html', (req, res)=>{
   res.sendfile('views/fere/start.html');
-});
-//
-router.get('/start1.html', (req, res)=>{
-  res.sendfile('views/fere/start1.html');
-});
-//
-router.get('/start2.html', (req, res)=>{
-  res.sendfile('views/fere/start2.html');
 });
 //
 router.get('/demo.html', (req, res)=>{
