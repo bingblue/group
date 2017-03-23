@@ -10,6 +10,10 @@ router.get('/', (req, res)=>{
   res.sendfile('views/fere/start.html');
 });
 //
+router.get('/home.html', (req, res)=>{
+  res.sendfile('views/fere/home.html');
+});
+//
 router.get('/chat.html', (req, res)=>{
   res.sendfile('views/fere/chat.html');
 });
