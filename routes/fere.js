@@ -106,8 +106,8 @@ router.get('/start.html', (req, res)=>{
   res.sendfile('views/fere/start.html');
 });
 //
-router.get('/demo.html', (req, res)=>{
-  res.sendfile('views/fere/demo.html');
+router.get('/upload.html', (req, res)=>{
+  res.sendfile('views/fere/upload.html');
 });
 //
 router.get('/demo.html', (req, res)=>{
