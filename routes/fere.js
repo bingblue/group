@@ -62,8 +62,8 @@ router.get('/personal-info-edit.html', (req, res)=>{
   res.sendfile('views/fere/personal-info-edit.html');
 });
 //
-router.get('/personal-market.html', (req, res)=>{
-  res.sendfile('views/fere/personal-market.html');
+router.get('/market.html', (req, res)=>{
+  res.sendfile('views/fere/market.html');
 });
 //
 router.get('/personal-message.html', (req, res)=>{
@@ -110,12 +110,12 @@ router.get('/upload.html', (req, res)=>{
   res.sendfile('views/fere/upload.html');
 });
 //
-router.get('/demo.html', (req, res)=>{
-  res.sendfile('views/fere/demo.html');
+router.get('/brand.html', (req, res)=>{
+  res.sendfile('views/fere/brand.html');
 });
 //
-router.get('/demo.html', (req, res)=>{
-  res.sendfile('views/fere/demo.html');
+router.get('/search.html', (req, res)=>{
+  res.sendfile('views/fere/search.html');
 });
 //
 router.get('/demo.html', (req, res)=>{
