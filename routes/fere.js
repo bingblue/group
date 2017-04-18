@@ -118,20 +118,20 @@ router.get('/search.html', (req, res)=>{
   res.sendfile('views/fere/search.html');
 });
 //
-router.get('/demo.html', (req, res)=>{
-  res.sendfile('views/fere/demo.html');
+router.get('/date.html', (req, res)=>{
+  res.sendfile('views/fere/date.html');
 });
 //
-router.get('/demo.html', (req, res)=>{
-  res.sendfile('views/fere/demo.html');
+router.get('/feedback.html', (req, res)=>{
+  res.sendfile('views/fere/feedback.html');
 });
 //
-router.get('/demo.html', (req, res)=>{
-  res.sendfile('views/fere/demo.html');
+router.get('/minimalist.html', (req, res)=>{
+  res.sendfile('views/fere/minimalist.html');
 });
 //
-router.get('/demo.html', (req, res)=>{
-  res.sendfile('views/fere/demo.html');
+router.get('/talk.html', (req, res)=>{
+  res.sendfile('views/fere/talk.html');
 });
 //
 router.get('/demo.html', (req, res)=>{

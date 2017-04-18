@@ -118,15 +118,36 @@ $(function () {
 			});
 		});
 	})();
-
+  //进入聊天页面
+	$("#messageList li").mutouch({
+		banRight: true,
+		offsetX: 5,
+		offsetY: 5,
+		onTap: function (tapNum) {
+			location.href = "talk.html";
+		}
+	});
+  //进入首页
+	$(".home-h1 .bg").mutouch({
+		banRight: true,
+		offsetX: 5,
+		offsetY: 5,
+		onTap: function (tapNum) {
+			location.href = "home.html";
+		}
+	});
 	//右下角菜单切换
+	var menuName = $("#homepage-bg").data("menu");
+	var menuUrl = $("#homepage-bg").data("url");
+	var menuNow = 0;
 	$("#homepage-bg").mutouch({
 		banRight: true,
 		offsetX: 5,
 		offsetY: 5,
 		onTap: function (tapNum) {
 			if ($("#homepage-bg").hasClass("on")) {
-				$("#homepage-bg").removeClass().addClass("off");
+				//$("#homepage-bg").removeClass().addClass("off");
+				location.href = menuUrl[menuNow];
 			} else {
 				$("#homepage-bg").removeClass().addClass("on");
 			}
@@ -135,6 +156,20 @@ $(function () {
 			if (typeTD == "down") {
 				$("#homepage-bg .fst").addClass('rdmenuItemOut');
 				$("#homepage-bg .sed").addClass('rdmenuItemIn');
+				setTimeout(function(){
+					if((menuNow+1)>=menuName.length){
+						menuNow = -1;
+					}
+					var temp = menuNow+2;
+					if(temp>=menuName.length){
+						temp = 0;
+					}
+					$("#homepage-bg .fst a").text(menuName[menuNow+1]);
+					$("#homepage-bg .sed a").text(menuName[temp]);
+					$("#homepage-bg .fst").removeClass('rdmenuItemOut');
+				  $("#homepage-bg .sed").removeClass('rdmenuItemIn');
+					++menuNow;
+				},1000);
 			}
 		}
 	});
