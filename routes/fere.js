@@ -134,12 +134,12 @@ router.get('/talk.html', (req, res)=>{
   res.sendfile('views/fere/talk.html');
 });
 //
-router.get('/demo.html', (req, res)=>{
-  res.sendfile('views/fere/demo.html');
+router.get('/help.html', (req, res)=>{
+  res.sendfile('views/fere/help.html');
 });
 //
-router.get('/demo.html', (req, res)=>{
-  res.sendfile('views/fere/demo.html');
+router.get('/friend.html', (req, res)=>{
+  res.sendfile('views/fere/friend.html');
 });
 //
 router.get('/demo.html', (req, res)=>{
