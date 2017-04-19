@@ -142,8 +142,8 @@ router.get('/friend.html', (req, res)=>{
   res.sendfile('views/fere/friend.html');
 });
 //
-router.get('/demo.html', (req, res)=>{
-  res.sendfile('views/fere/demo.html');
+router.get('/brand-go.html', (req, res)=>{
+  res.sendfile('views/fere/brand-go.html');
 });
 //
 router.get('/demo.html', (req, res)=>{
