@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>首页</title>
+<meta name="Keywords" content="点点客微伙伴、微信营销、微信代运营、微信定制开发、微网站、微营销">
+<meta name="Description" content="点点客微伙伴，国内最大的微信公众智能服务平台，点点客微伙伴十大功能体系：。">
+
+<!-- 移动设备支持 -->
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta content="no-cache" http-equiv="pragma">
+<meta content="0" http-equiv="expires">
+<meta content="telephone=no, address=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes"> 
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<link href="css/reset.css" rel="stylesheet" type="text/css">
+<link href="css/zp.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+  .wrap{
+    height: 100%;
+  }
+</style>
+</head>
+
+<body>
+<div class="wrap p1">
+  <a href="javascript:;" class="rule-btn"></a>
+  <div class="main">
+    <img src="images/p1.jpg">
+  </div>
+  <div class="main">
+    <img src="images/p2.jpg">
+  </div>
+  <a href="javascript:;" class="choose-btn choose-btn1"></a>
+  <a href="javascript:;" class="choose-btn choose-btn2"></a>
+  <a href="javascript:;" class="choose-btn choose-btn3"></a>
+  <a href="02.html" class="choose-btn choose-btn4"></a>
+  <div class="pos pos1">
+    <img src="images/rule.jpg">
+    <a class="back-btn back hide" href="javascript:void(0);"></a>
+  </div>
+</div>
+<script src="js/jquery-1.8.2.min.js"></script>
+<script src="js/jquery.mutouch.min.js"></script>
+<script type="text/javascript">
+  $(function(){
+    $(".choose-btn").hide();
+    $(".rule-btn").click(function(){
+      $(".rule-btn").hide();
+      $(".pos1").show();
+    });
+    $(".hide").click(function(){
+      $(".pos").hide();
+      $(".rule-btn").show();
+    });
+    $(".main").mutouch({
+      onSwipeTop : function(){
+        $(".main").animate({
+          top : "-100%"
+        },1000);
+        $(".rule-btn").hide();
+        $(".choose-btn").show();
+      },
+      onSwipeDown : function(){
+        $(".main").animate({
+          top : "0%"
+        },1000);
+        $(".rule-btn").show();
+        $(".choose-btn").hide();
+      },
+    });
+  });
+</script>
+</body>
+</html>

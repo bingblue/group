@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>首页</title>
+<meta name="Keywords" content="点点客微伙伴、微信营销、微信代运营、微信定制开发、微网站、微营销">
+<meta name="Description" content="点点客微伙伴，国内最大的微信公众智能服务平台，点点客微伙伴十大功能体系。">
+
+<!-- 移动设备支持 -->
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta content="no-cache" http-equiv="pragma">
+<meta content="0" http-equiv="expires">
+<meta content="telephone=no, address=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes"> 
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<link href="dest/hiteggs.min.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+  .hammer1{
+    position: absolute;
+    z-index: 99;
+    left: 73%;
+    top: 26%; 
+    width: 25%;
+  }
+</style>
+</head>
+
+<body>
+<div class="wrap">
+  <div class="main">
+    <img src="images/p2-bg.jpg">
+    <img class="hammer hammer1" src="images/hammer.png">
+    <div class="egg-box">
+      <div class="egg-items">
+        <div class="egg-item">
+          <img src="images/egg.png"><span class="egg-num">1</span>
+          <!-- <img class="hammer" src="images/hammer.png"> -->
+        </div>
+        <div class="egg-item"><img src="images/egg.png"><span class="egg-num">2</span></div>
+        <div class="egg-item"><img src="images/egg.png"><span class="egg-num">3</span></div>
+        <div class="egg-item"><img src="images/egg.png"><span class="egg-num">4</span></div>
+        <div class="egg-item"><img src="images/egg.png"><span class="egg-num">5</span></div>
+        <div class="egg-item"><img src="images/egg.png"><span class="egg-num">6</span></div>
+        <div class="egg-item"><img src="images/egg.png"><span class="egg-num">7</span></div>
+        <div class="egg-item"><img src="images/egg.png"><span class="egg-num">8</span></div>
+        <div class="egg-item"><img src="images/egg.png"><span class="egg-num">9</span></div>
+        <div class="egg-item"><img src="images/egg.png"><span class="egg-num">10</span></div>
+        <div class="egg-item"><img src="images/egg.png"><span class="egg-num">11</span></div>
+        <div class="egg-item">
+          <img src="images/egg.png">
+          <span class="egg-num">12</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mask-msg-bd jq-mask" style="display:;">
+    <div class="pos">
+      <h1 style="color:#ba8449;">恭喜您，中奖了！</h1>
+      <a class="btn-ok jq-close" href="javascript:void(0);">立即领取</a>
+    </div>
+  </div>
+</div>
+<script src="dest/jquery-1.8.2.min.js"></script>
+<script src="dest/hit.js"></script>
+<script src="dest/hiteggs.js"></script>
+<script type="text/javascript">
+  $(".egg-box").hit({
+    hammerImg : 'images/hammer.png',//锤子的图片路径
+    breakImg : 'images/break.png',//碎蛋的图片路径
+    scrollTime : 10,//滚动一圈所需时间，即滚动的快慢
+    over : function(num){//砸碎金蛋后要执行的操作，num是砸碎的第几个金蛋
+      //弹出层都在 01.html 里面
+      $(".mask-msg-bd").show();
+    }
+  });
+</script>
+<a href="#" onclick="location.reload(true);">刷新</a>
+</body>
+</html>

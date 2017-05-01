@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>首页</title>
+<meta name="Keywords" content="点点客微伙伴、微信营销、微信代运营、微信定制开发、微网站、微营销">
+<meta name="Description" content="点点客微伙伴，国内最大的微信公众智能服务平台，点点客微伙伴十大功能体系。">
+
+<!-- 移动设备支持 -->
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta content="no-cache" http-equiv="pragma">
+<meta content="0" http-equiv="expires">
+<meta content="telephone=no, address=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes"> 
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<link href="dest/zhangliang.min.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+  #audio_btn{
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    z-index: 200;
+    display: block;
+    width: 40px;
+    height: 40px;
+    /*background-image: url(images/music.png);*/
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+  }
+  #audio_btn.off{
+    background-position: 0px -40px;
+  }
+  audio{
+    display: block;
+    height: 1px;
+    width: 1px;
+    display: none;
+  }
+</style>
+</head>
+
+<body>
+<div class="wrap">
+  <div class="main">
+    <img class="bg-an" src="images/p1-bg.jpg">
+
+    <img class="p1 p1-anzl" src="images/p1-man.png">
+    <img class="p1 p1-an1" src="images/p1-an2.png">
+    <img class="p1 p1-an2" src="images/p1-an3.png">
+    <img class="p1 p1-an3" src="images/p1-an4.png">
+    <img class="p1 p1-an4" src="images/p1-an5.png">
+    <img class="p1 p1-an5" src="images/p1-an6.png">
+    <img class="p1 p1-an6" src="images/p1-an7.png">
+
+    <img class="p2 p2-an1" src="images/p2-an1.png">
+    <img class="p2 p2-an2" src="images/p2-an2.png">
+    <img class="p2 p2-anzl" src="images/p2-man.png">
+    <img class="p2 p2-an5" src="images/p2-an4.png">
+    <img class="p2 p2-an4" src="images/p2-an5.png">
+    <img class="p2 p2-an3" src="images/p2-an6.png">
+    <img class="p2 p2-lb-1" src="images/p2-an3-2-1.png">
+    <img class="p2 p2-lb-2" src="images/p2-an3-2-2.png">
+    <img class="p2 p2-enter" src="images/p2-an3.png">
+  </div>
+</div>
+<div id="audio_btn" url="images/bg.mp3" class="off"></div>
+<audio id="media2" src="images/fbb.mp3"></audio>
+<script src="dest/jquery-1.8.2.min.js"></script>
+<script type="text/javascript">
+  $(function(){
+    setTimeout(function(){$(".p1-an1").fadeIn(200);}, 1000);
+    setTimeout(function(){$(".p1-an2").fadeIn().animate({
+      left : 0,
+      top : "64%"
+    },1000);}, 1300);
+    setTimeout(function(){$(".p1-an3").fadeIn(500);}, 1600);
+    setTimeout(function(){$(".p1-an4").fadeIn(500);}, 1900);
+    setTimeout(function(){$(".p1-an5").fadeIn(500);}, 2200);
+    setTimeout(function(){$(".p1-an6").fadeIn(500);}, 2500);
+    setTimeout(function(){$(".p1-an7").fadeIn(500);}, 2800);
+    setTimeout(function(){
+      $(".bg-an").attr("src","images/p2-bg.jpg");
+      $(".p1").hide();
+      $(".p2-anzl").fadeIn(1500);
+
+      $(".p2-an3").on('touchstart',function(){
+        var media2 = $("#media2").get(0);
+        media2.play();
+      });
+      setTimeout(function(){$(".p2-an1").fadeIn(1200);}, 1500);
+      setTimeout(function(){$(".p2-an2").fadeIn().animate({
+        left : 0,
+        top : 0
+      },1000);}, 1700);
+      setTimeout(function(){$(".p2-an3").fadeIn(500);
+        var media2 = $("#media2").get(0);
+        media2.play();
+      }, 2000);
+      setTimeout(function(){$(".p2-an4").fadeIn(500);}, 2400);
+      setTimeout(function(){$(".p2-an5").fadeIn(500);}, 2800);
+      setTimeout(function(){$(".p2-lb-1").fadeIn();$(".p2-lb-2").fadeIn();$(".p2-enter").fadeIn();}, 3000);
+    }, 6800);
+    $(".p2-enter").click(function(){
+      location.href = "02.html";
+    });
+    $(".p2-lb-2").click(function(){
+      location.href = "03.html";
+    });
+  });
+  var is_open = 'on';
+  window.onload=function(){
+    //var id = document.getElementById("loading");
+    //setTimeout(function(){document.body.removeChild(id)},1000);
+
+    if($("#audio_btn").attr("url").indexOf("mp3")>1){
+      var url = $("#audio_btn").attr("url"); 
+      var auto = is_open=='on' ? 'autoplay' : '';
+      var html = '<audio loop  src="'+url+'" id="media" '+auto+' ></audio>';
+      setTimeout(function(){
+        $("#audio_btn").html(html);
+        $("#audio_btn").show().attr("class",is_open);
+      },500);
+      
+      // $("#audio_btn").on('touchstart',function(){
+      //   var type = $("#audio_btn").attr("class");
+      //   var media = $("#media").get(0);
+      //   if(type=="on"){
+      //     media.pause(); 
+      //     $("#audio_btn").attr("class","off");
+      //   }else{
+      //     media.play();
+      //     $("#audio_btn").attr("class","on"); 
+      //   }  
+      // });
+    }
+  } 
+</script>
+<!-- <a href="#" onclick="location.reload(true);">刷新</a> -->
+</body>
+</html>
