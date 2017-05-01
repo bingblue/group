@@ -166,8 +166,8 @@ router.get('/demo.html', (req, res)=>{
   res.sendfile('views/fere/demo.html');
 });
 //fish
-router.get('/fish', (req, res)=>{
-  res.sendfile('views/fish/01.html');
+router.get('/demo.html', (req, res)=>{
+  res.sendfile('views/fere/demo.html');
 });
 //
 router.get('/demo.html', (req, res)=>{
