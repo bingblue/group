@@ -12,8 +12,9 @@ $(function(){
     console.log("play下载完成！");
     $(".mask1").fadeIn(200);
   });
-  video.onload = function(){
+  document.onload = function(){
     console.log("onload下载完成！");
+    alert('document');
     $(".mask1").fadeIn(200);
   };
   $(".star").click(function(){
