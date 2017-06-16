@@ -1,9 +1,9 @@
 $(function(){
   var video = $("#myvideo")[0];
-  video.addEventListener("canplay",function(){
+  video.addEventListener("loadeddata",function(){
     console.log("下载完成！");
-  });
     $(".mask1").fadeIn(200);
+  });
   $(".star").click(function(){
     $(".wrap1").hide();
     $("#myvideo").show();
